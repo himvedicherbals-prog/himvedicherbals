@@ -1,43 +1,30 @@
 /**
  * GET /api/config
- * 
- * Returns site configuration from environment variables.
- * This endpoint doesn't use any database.
+ * Returns public site configuration for the frontend
  */
 
 export async function onRequestGet(context) {
   const { env } = context;
-  
+
   const config = {
-    site: {
-      name: env.SITE_NAME || 'Trishanku Baba',
-      tagline: env.SITE_TAGLINE || '',
-      copyright: env.SITE_COPYRIGHT || ''
-    },
-    contact: {
-      email: env.CONTACT_EMAIL || '',
-      phone: env.CONTACT_PHONE || ''
-    },
-    location: {
-      city: env.ADDRESS_CITY || '',
-      province: env.ADDRESS_PROVINCE || '',
-      country: env.ADDRESS_COUNTRY || ''
-    },
-    currency: {
-      default: env.DEFAULT_CURRENCY || 'USD',
-      exchangeRateToNPR: parseFloat(env.EXCHANGE_RATE_TO_NPR) || 133.50
-    },
+    siteName: env.SITE_NAME || 'Trishanku Baba',
+    siteTagline: env.SITE_TAGLINE || 'Premium Organic Gau Products & Medicinal Herbs',
+    contactEmail: env.CONTACT_EMAIL || '',
     features: {
-      authEnabled: true,
+      auth: true,
       blogComments: true,
-      shoppingCart: true
-    }
+      blogLikes: true,
+      contactForm: true,
+    },
+    version: '1.0.0',
   };
-  
-  return new Response(JSON.stringify(config, null, 2), {
+
+  return new Response(JSON.stringify(config), {
+    status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
-    }
+      'Cache-Control': 'public, max-age=300',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    },
   });
 }

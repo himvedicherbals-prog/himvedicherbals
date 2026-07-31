@@ -1,65 +1,56 @@
 /**
  * POST /api/auth/logout
- * 
- * Invalidates user session by removing token from database.
- * Uses USERS_DB (D1) for session management.
+ * Invalidate the current session token
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
+
   try {
-    // Get authorization header
     const authHeader = request.headers.get('Authorization');
-    
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return new Response(JSON.stringify({
-        error: 'No authentication token provided'
-      }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return jsonResponse({ success: false, error: 'No token provided' }, 401, env);
     }
-    
-    const token = authHeader.replace('Bearer ', '');
-    
-    // Delete session from database
-    const result = await env.USERS_DB.prepare(`
-      DELETE FROM sessions WHERE token = ?
-    `).bind(token).run();
-    
+
+    const token = authHeader.slice(7);
+
+    // Delete the session
+    const result = await env.USERS_DB.prepare('DELETE FROM sessions WHERE token = ?')
+      .bind(token)
+      .run();
+
     if (result.meta.changes > 0) {
-      console.log('User logged out successfully');
-      
-      return new Response(JSON.stringify({
-        success: true,
-        message: 'Logged out successfully'
-      }), {
-        status: 200,
-        headers: { 
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-store'
-        }
-      });
-    } else {
-      // Token might already be invalid, but that's okay
-      return new Response(JSON.stringify({
-        success: true,
-        message: 'Session ended'
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return jsonResponse({ success: true, message: 'Logged out successfully' }, 200, env);
     }
-    
-  } catch (error) {
-    console.error('Logout error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Logout failed. Please try again.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+
+    // Token might have already expired — still return success
+    return jsonResponse({ success: true, message: 'Logged out' }, 200, env);
+  } catch (err) {
+    console.error('Logout error:', err);
+    return jsonResponse({ success: false, error: 'Internal server error' }, 500, env);
   }
+}
+
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
+}
+
+function corsHeaders(env) {
+  return {
+    'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
 }

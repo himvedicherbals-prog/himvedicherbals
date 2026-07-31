@@ -1,121 +1,119 @@
 /**
- * PUT/DELETE /api/blog/comment/[id]
- * 
- * PUT:    Update comment status (moderation) or text
- * DELETE: Remove a comment
- * Uses BLOG_DB (D1) for comment management.
+ * PUT    /api/blog/comment/:id  — Moderate/update comment (admin only)
+ * DELETE /api/blog/comment/:id  — Delete comment (admin or author)
  */
+
+async function getAdminUser(env, request) {
+  const authHeader = request.headers.get('Authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
+
+  const token = authHeader.slice(7);
+  return await env.USERS_DB.prepare(
+    'SELECT u.id, u.is_admin FROM sessions s JOIN users u ON s.user_id = u.id WHERE s.token = ? AND s.expires_at > datetime(\'now\') AND u.is_active = 1'
+  )
+    .bind(token)
+    .first();
+}
 
 export async function onRequestPut(context) {
   const { request, env, params } = context;
-  
+  const commentId = params.id;
+
   try {
-    const commentId = params.id;
-    const data = await request.json();
-    const { status, text } = data;
-    
-    // Check if comment exists
-    const existingComment = await env.BLOG_DB.prepare(`
-      SELECT id, status FROM comments WHERE id = ?
-    `).bind(commentId).first();
-    
-    if (!existingComment) {
-      return new Response(JSON.stringify({
-        error: 'Comment not found'
-      }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    // Admin check
+    const user = await getAdminUser(env, request);
+    if (!user || !user.is_admin) {
+      return jsonResponse({ success: false, error: 'Admin access required' }, 403, env);
     }
-    
-    // Update fields
-    if (status && ['pending', 'approved', 'rejected'].includes(status)) {
-      await env.BLOG_DB.prepare(`
-        UPDATE comments SET status = ? WHERE id = ?
-      `).bind(status, commentId).run();
+
+    const body = await request.json();
+    const { status, text } = body;
+
+    if (status && !['pending', 'approved', 'rejected'].includes(status)) {
+      return jsonResponse({ success: false, error: 'Invalid status value' }, 400, env);
     }
-    
-    if (text !== undefined) {
-      await env.BLOG_DB.prepare(`
-        UPDATE comments SET text = ? WHERE id = ?
-      `).bind(text, commentId).run();
+
+    // Build dynamic update
+    const updates = [];
+    const values = [];
+    if (status) { updates.push('status = ?'); values.push(status); }
+    if (text) { updates.push('text = ?'); values.push(text.trim()); }
+    updates.push("updated_at = datetime('now')");
+
+    if (updates.length <= 1) {
+      return jsonResponse({ success: false, error: 'No fields to update' }, 400, env);
     }
-    
-    console.log(`Comment ${commentId} updated`);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Comment updated successfully'
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-    
-  } catch (error) {
-    console.error('Update comment error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Failed to update comment.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+
+    values.push(commentId);
+    const result = await env.BLOG_DB.prepare(
+      `UPDATE comments SET ${updates.join(', ')} WHERE id = ?`
+    )
+      .bind(...values)
+      .run();
+
+    if (result.meta.changes === 0) {
+      return jsonResponse({ success: false, error: 'Comment not found' }, 404, env);
+    }
+
+    return jsonResponse({ success: true, message: 'Comment updated' }, 200, env);
+  } catch (err) {
+    console.error('Update comment error:', err);
+    return jsonResponse({ success: false, error: 'Failed to update comment' }, 500, env);
   }
 }
 
 export async function onRequestDelete(context) {
-  const { env, params } = context;
-  
+  const { request, env, params } = context;
+  const commentId = params.id;
+
   try {
-    const commentId = params.id;
-    
-    // Check if comment exists
-    const existingComment = await env.BLOG_DB.prepare(`
-      SELECT id FROM comments WHERE id = ?
-    `).bind(commentId).first();
-    
-    if (!existingComment) {
-      return new Response(JSON.stringify({
-        error: 'Comment not found'
-      }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const user = await getAdminUser(env, request);
+    if (!user) {
+      return jsonResponse({ success: false, error: 'Authentication required' }, 401, env);
     }
-    
-    // Delete child comments first (if any)
-    await env.BLOG_DB.prepare(`
-      DELETE FROM comments WHERE parent_id = ?
-    `).bind(commentId).run();
-    
-    // Delete the comment
-    await env.BLOG_DB.prepare(`
-      DELETE FROM comments WHERE id = ?
-    `).bind(commentId).run();
-    
-    // Delete associated reactions
-    await env.BLOG_DB.prepare(`
-      DELETE FROM comment_reactions WHERE comment_id = ?
-    `).bind(commentId).run();
-    
-    console.log(`Comment ${commentId} deleted`);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Comment deleted successfully'
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-    
-  } catch (error) {
-    console.error('Delete comment error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Failed to delete comment.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+
+    // Admin can delete any, regular user can only delete their own
+    let query = 'DELETE FROM comments WHERE id = ?';
+    const binds = [commentId];
+
+    if (!user.is_admin) {
+      query += ' AND user_id = ?';
+      binds.push(user.id);
+    }
+
+    const result = await env.BLOG_DB.prepare(query).bind(...binds).run();
+
+    if (result.meta.changes === 0) {
+      return jsonResponse({ success: false, error: 'Comment not found or not authorized' }, 404, env);
+    }
+
+    return jsonResponse({ success: true, message: 'Comment deleted' }, 200, env);
+  } catch (err) {
+    console.error('Delete comment error:', err);
+    return jsonResponse({ success: false, error: 'Failed to delete comment' }, 500, env);
   }
+}
+
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
+}
+
+function corsHeaders(env) {
+  return {
+    'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Methods': 'PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
 }

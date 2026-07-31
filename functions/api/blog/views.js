@@ -1,88 +1,80 @@
 /**
  * POST /api/blog/views
- * 
- * Track page views for blog posts.
- * Uses BLOG_DB (D1) for view counting.
+ * Track a page view for a blog post
+ * Debounced: only records 1 view per IP per post per hour
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
+
   try {
-    const data = await request.json();
-    const { post_slug } = data;
-    
-    // Validate required fields
-    if (!post_slug) {
-      return new Response(JSON.stringify({
-        error: 'post_slug is required'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const body = await request.json();
+    const { post_slug } = body;
+
+    if (!post_slug || typeof post_slug !== 'string') {
+      return jsonResponse({ success: false, error: 'post_slug is required' }, 400, env);
     }
-    
-    // Get client IP
-    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
-    const ipHash = await hashString(clientIP);
-    
-    // Check for recent view from same IP (prevent spam, allow once per hour)
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const recentView = await env.BLOG_DB.prepare(`
-      SELECT id FROM post_views 
-      WHERE post_slug = ? AND ip_hash = ? AND created_at > ?
-    `).bind(post_slug, ipHash, oneHourAgo).first();
-    
-    let isNewView = false;
-    let totalViews = 0;
-    
-    if (!recentView) {
-      // Record new view
-      await env.BLOG_DB.prepare(`
-        INSERT INTO post_views (post_slug, ip_hash)
-        VALUES (?, ?)
-      `).bind(post_slug, ipHash).run();
-      
-      isNewView = true;
+
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const encoder = new TextEncoder();
+    const hashBuf = await crypto.subtle.digest('SHA-256', encoder.encode(ip));
+    const ipHash = Array.from(new Uint8Array(hashBuf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+
+    // Check if viewed in the last hour
+    const recent = await env.BLOG_DB.prepare(
+      "SELECT id FROM post_views WHERE post_slug = ? AND ip_hash = ? AND created_at > datetime('now', '-1 hour')"
+    )
+      .bind(post_slug, ipHash)
+      .first();
+
+    if (recent) {
+      // Already counted recently
+      const count = await getViewCount(env, post_slug);
+      return jsonResponse({ success: true, viewCount: count, recorded: false }, 200, env);
     }
-    
-    // Get total views count
-    const countResult = await env.BLOG_DB.prepare(`
-      SELECT COUNT(*) as total FROM post_views WHERE post_slug = ?
-    `).bind(post_slug).first();
-    
-    totalViews = countResult.total;
-    
-    return new Response(JSON.stringify({
-      success: true,
-      data: {
-        isNewView,
-        totalViews
-      }
-    }), {
-      status: 200,
-      headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
-      }
-    });
-    
-  } catch (error) {
-    console.error('Views error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Failed to track view.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+
+    // Record the view
+    await env.BLOG_DB.prepare(
+      'INSERT INTO post_views (post_slug, ip_hash, user_agent) VALUES (?, ?, ?)'
+    )
+      .bind(post_slug, ipHash, request.headers.get('User-Agent') || null)
+      .run();
+
+    const count = await getViewCount(env, post_slug);
+    return jsonResponse({ success: true, viewCount: count, recorded: true }, 201, env);
+  } catch (err) {
+    console.error('Views error:', err);
+    return jsonResponse({ success: false, error: 'Failed to record view' }, 500, env);
   }
 }
 
-async function hashString(str) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(str);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
+}
+
+async function getViewCount(env, postSlug) {
+  const result = await env.BLOG_DB.prepare(
+    'SELECT COUNT(*) as count FROM post_views WHERE post_slug = ?'
+  )
+    .bind(postSlug)
+    .first();
+  return result?.count || 0;
+}
+
+function corsHeaders(env) {
+  return {
+    'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    },
+  });
 }

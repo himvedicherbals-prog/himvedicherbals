@@ -1,168 +1,170 @@
 /**
  * POST /api/auth/signup
- * 
- * Registers a new user account.
- * Uses USERS_DB (D1) for user storage.
- * First user with ADMIN_EMAIL automatically becomes admin.
+ * Register a new user with D1
+ * Password hashed with PBKDF2-SHA256 (100k iterations)
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
+
   try {
-    const { username, email, password, displayName } = await request.json();
-    
-    // Validate required fields
-    if (!username || !email || !password) {
-      return new Response(JSON.stringify({
-        error: 'Username, email, and password are required'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const body = await request.json();
+    const { username, email, password, displayName } = body;
+
+    // ── Validation ──
+    const errors = [];
+    if (!username || typeof username !== 'string' || username.length < 3 || username.length > 30) {
+      errors.push('Username must be 3-30 characters');
     }
-    
-    // Validate username length
-    if (username.length < 3 || username.length > 30) {
-      return new Response(JSON.stringify({
-        error: 'Username must be between 3 and 30 characters'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      errors.push('Username can only contain letters, numbers, and underscores');
     }
-    
-    // Validate password strength
-    if (password.length < 8) {
-      return new Response(JSON.stringify({
-        error: 'Password must be at least 8 characters'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.push('Valid email is required');
     }
-    
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response(JSON.stringify({
-        error: 'Invalid email format'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    if (!password || typeof password !== 'string' || password.length < 8) {
+      errors.push('Password must be at least 8 characters');
     }
-    
-    // Check if username or email already exists
-    const existingUser = await env.USERS_DB.prepare(`
-      SELECT id FROM users WHERE username = ? OR email = ?
-    `).bind(username, email).first();
-    
+
+    if (errors.length > 0) {
+      return jsonResponse({ success: false, errors }, 400, env);
+    }
+
+    // ── Check if user already exists ──
+    const existingUser = await env.USERS_DB.prepare(
+      'SELECT id FROM users WHERE username = ? OR email = ?'
+    )
+      .bind(username.toLowerCase(), email.toLowerCase())
+      .first();
+
     if (existingUser) {
-      return new Response(JSON.stringify({
-        error: 'Username or email already exists'
-      }), {
-        status: 409,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return jsonResponse(
+        { success: false, error: 'Username or email already registered' },
+        409,
+        env
+      );
     }
-    
-    // Check if this should be admin user
-    const isAdmin = email.toLowerCase() === (env.ADMIN_EMAIL || '').toLowerCase() || 
-                    username.toLowerCase() === (env.ADMIN_USERNAME || '').toLowerCase();
-    
-    // Generate salt and hash password
-    const salt = generateSalt();
-    const passwordHash = await hashPassword(password, salt);
-    
-    // Insert user into database
-    const result = await env.USERS_DB.prepare(`
-      INSERT INTO users (username, email, password_hash, salt, display_name, is_admin)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).bind(username, email, passwordHash, salt, displayName || '', isAdmin ? 1 : 0).run();
-    
-    if (!result.success) {
-      throw new Error('Failed to create user');
-    }
-    
-    // Generate session token for auto-login
-    const token = generateToken();
-    const expiresAt = new Date(Date.now() + (parseInt(env.SESSION_EXPIRY_DAYS) || 30) * 24 * 60 * 60 * 1000);
-    
-    // Store session
-    await env.USERS_DB.prepare(`
-      INSERT INTO sessions (user_id, token, expires_at)
-      VALUES ((SELECT id FROM users WHERE username = ?), ?, ?)
-    `).bind(username, token, expiresAt.toISOString()).run();
-    
-    console.log(`New user registered: ${username} (${email})${isAdmin ? ' [ADMIN]' : ''}`);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      message: isAdmin 
-        ? 'Admin account created successfully!' 
-        : 'Account created successfully!',
-      user: {
-        username,
-        email,
-        displayName: displayName || '',
-        isAdmin
+
+    // ── Hash password with PBKDF2 ──
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const saltHex = Array.from(salt)
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+
+    const encoder = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey(
+      'raw',
+      encoder.encode(password),
+      'PBKDF2',
+      false,
+      ['deriveBits']
+    );
+
+    const derivedBits = await crypto.subtle.deriveBits(
+      {
+        name: 'PBKDF2',
+        salt: salt,
+        iterations: 100000,
+        hash: 'SHA-256',
       },
-      token,
-      expiresIn: parseInt(env.SESSION_EXPIRY_DAYS) || 30 * 24 * 60 * 60
-    }), {
-      status: 201,
-      headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
-      }
-    });
-    
-  } catch (error) {
-    console.error('Signup error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Registration failed. Please try again.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+      keyMaterial,
+      256
+    );
+
+    const hashHex = Array.from(new Uint8Array(derivedBits))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+
+    // ── Determine if first user = admin ──
+    const userCount = await env.USERS_DB.prepare('SELECT COUNT(*) as count FROM users').first();
+    const isAdmin = userCount.count === 0 ? 1 : 0;
+
+    // ── Insert user ──
+    const result = await env.USERS_DB.prepare(
+      'INSERT INTO users (username, email, password_hash, salt, display_name, is_admin) VALUES (?, ?, ?, ?, ?, ?)'
+    )
+      .bind(
+        username.toLowerCase(),
+        email.toLowerCase(),
+        hashHex,
+        saltHex,
+        displayName?.trim() || username.trim(),
+        isAdmin
+      )
+      .run();
+
+    const userId = result.meta.last_row_id;
+
+    // ── Create session ──
+    const session = await createSession(env.USERS_DB, userId, request);
+
+    return jsonResponse(
+      {
+        success: true,
+        message: isAdmin ? 'Admin account created successfully!' : 'Account created successfully!',
+        user: {
+          id: userId,
+          username: username.toLowerCase(),
+          email: email.toLowerCase(),
+          displayName: displayName?.trim() || username.trim(),
+          isAdmin: isAdmin === 1,
+        },
+        token: session.token,
+        expiresIn: getSessionExpiryDays(env),
+      },
+      201,
+      env
+    );
+  } catch (err) {
+    console.error('Signup error:', err);
+    return jsonResponse({ success: false, error: 'Internal server error' }, 500, env);
   }
 }
 
-function generateSalt() {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
-  return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
 }
 
-function generateToken() {
-  const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
-  return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+// ── Helpers ──
+
+async function createSession(db, userId, request) {
+  const tokenBytes = crypto.getRandomValues(new Uint8Array(32));
+  const token = Array.from(tokenBytes)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+
+  const expiryDays = 30;
+  const expiresAt = new Date(Date.now() + expiryDays * 24 * 60 * 60 * 1000).toISOString();
+
+  await db.prepare(
+    'INSERT INTO sessions (user_id, token, user_agent, expires_at) VALUES (?, ?, ?, ?)'
+  )
+    .bind(userId, token, request.headers.get('User-Agent') || null, expiresAt)
+    .run();
+
+  return { token, expiresAt };
 }
 
-async function hashPassword(password, salt) {
-  const encoder = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
-    'raw',
-    encoder.encode(salt + password),
-    'PBKDF2',
-    false,
-    ['deriveBits']
-  );
-  
-  const hashBuffer = await crypto.subtle.deriveBits(
-    {
-      name: 'PBKDF2',
-      salt: encoder.encode(salt),
-      iterations: 100000,
-      hash: 'SHA-256'
+function getSessionExpiryDays(env) {
+  return parseInt(env.SESSION_EXPIRY_DAYS || '30', 10);
+}
+
+function corsHeaders(env) {
+  return {
+    'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+      'Access-Control-Allow-Credentials': 'true',
     },
-    keyMaterial,
-    256
-  );
-  
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  });
 }

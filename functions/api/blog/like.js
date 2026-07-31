@@ -1,95 +1,94 @@
 /**
  * POST /api/blog/like
- * 
- * Toggle like/unlike on a blog post.
- * Uses BLOG_DB (D1) for storing likes.
+ * Toggle like on a post. Uses IP + optional user_id for dedup.
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
+
   try {
-    const data = await request.json();
-    const { post_slug, user_id } = data;
-    
-    // Validate required fields
-    if (!post_slug) {
-      return new Response(JSON.stringify({
-        error: 'post_slug is required'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const body = await request.json();
+    const { post_slug } = body;
+
+    if (!post_slug || typeof post_slug !== 'string') {
+      return jsonResponse({ success: false, error: 'post_slug is required' }, 400, env);
     }
-    
-    // Get client IP for anonymous users
-    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
-    
-    // Check if already liked (by user or IP)
-    const existingLike = await env.BLOG_DB.prepare(`
-      SELECT id FROM post_likes 
-      WHERE post_slug = ? AND (user_id = ? OR (user_id IS NULL AND ip_hash = ?))
-    `).bind(post_slug, user_id || null, await hashString(clientIP)).first();
-    
-    let liked = false;
-    let totalLikes = 0;
-    
-    if (existingLike) {
-      // Unlike: remove the like
-      await env.BLOG_DB.prepare(`
-        DELETE FROM post_likes WHERE id = ?
-      `).bind(existingLike.id).run();
-      
-      liked = false;
-      console.log(`Post ${post_slug} unliked`);
+
+    // Identify user
+    let userId = null;
+    const authHeader = request.headers.get('Authorization');
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.slice(7);
+      const session = await env.USERS_DB.prepare(
+        'SELECT user_id FROM sessions WHERE token = ? AND expires_at > datetime(\'now\')'
+      )
+        .bind(token)
+        .first();
+      if (session) userId = session.user_id;
+    }
+
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const encoder = new TextEncoder();
+    const hashBuf = await crypto.subtle.digest('SHA-256', encoder.encode(ip));
+    const ipHash = Array.from(new Uint8Array(hashBuf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+
+    // Check if already liked
+    const existing = await env.BLOG_DB.prepare(
+      'SELECT id FROM post_likes WHERE post_slug = ? AND (user_id = ? OR (user_id IS NULL AND ip_hash = ?))'
+    )
+      .bind(post_slug, userId, ipHash)
+      .first();
+
+    if (existing) {
+      // Unlike
+      await env.BLOG_DB.prepare('DELETE FROM post_likes WHERE id = ?').bind(existing.id).run();
+      const count = await getLikeCount(env, post_slug);
+      return jsonResponse({ success: true, liked: false, likeCount: count }, 200, env);
     } else {
-      // Like: add new record
-      await env.BLOG_DB.prepare(`
-        INSERT INTO post_likes (post_slug, user_id, ip_hash)
-        VALUES (?, ?, ?)
-      `).bind(post_slug, user_id || null, await hashString(clientIP)).run();
-      
-      liked = true;
-      console.log(`Post ${post_slug} liked`);
+      // Like
+      await env.BLOG_DB.prepare(
+        'INSERT INTO post_likes (post_slug, user_id, ip_hash) VALUES (?, ?, ?)'
+      )
+        .bind(post_slug, userId, ipHash)
+        .run();
+      const count = await getLikeCount(env, post_slug);
+      return jsonResponse({ success: true, liked: true, likeCount: count }, 201, env);
     }
-    
-    // Get updated count
-    const countResult = await env.BLOG_DB.prepare(`
-      SELECT COUNT(*) as total FROM post_likes WHERE post_slug = ?
-    `).bind(post_slug).first();
-    
-    totalLikes = countResult.total;
-    
-    return new Response(JSON.stringify({
-      success: true,
-      data: {
-        liked,
-        totalLikes
-      }
-    }), {
-      status: 200,
-      headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store'
-      }
-    });
-    
-  } catch (error) {
-    console.error('Like error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Failed to process like.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+  } catch (err) {
+    console.error('Like error:', err);
+    return jsonResponse({ success: false, error: 'Failed to process like' }, 500, env);
   }
 }
 
-async function hashString(str) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(str);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
+}
+
+async function getLikeCount(env, postSlug) {
+  const result = await env.BLOG_DB.prepare(
+    'SELECT COUNT(*) as count FROM post_likes WHERE post_slug = ?'
+  )
+    .bind(postSlug)
+    .first();
+  return result?.count || 0;
+}
+
+function corsHeaders(env) {
+  return {
+    'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Credentials': 'true',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
 }

@@ -1,181 +1,78 @@
-#!/usr/bin/env node
 /**
- * Database Initialization Script for Cloudflare D1
- * 
- * This script helps initialize and manage your D1 databases:
- * - blog-db: Blog comments, likes, views
- * - users-db: User authentication, sessions
- * 
- * Usage:
- *   node scripts/init-databases.js              # Initialize both databases
- *   node scripts/init-databases.js --blog        # Only blog-db
- *   node scripts/init-databases.js --users       # Only users-db
- *   node scripts/init-databases.js --list        # List existing databases
+ * D1 Database Initialization Helper
+ * Creates both databases and prints the wrangler.toml bindings to update
  */
 
-import { execSync } from 'child_process';
-import { readFileSync, existsSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
+const { execSync } = require('child_process');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+const DATABASES = [
+  { name: 'blog-db', binding: 'BLOG_DB', schema: 'blog-schema.sql' },
+  { name: 'users-db', binding: 'USERS_DB', schema: 'users-schema.sql' },
+];
 
-// Console colors
-const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  red: '\x1b[31m',
-  cyan: '\x1b[36m'
-};
-
-function log(message, color = 'reset') {
-  console.log(`${colors[color]}${message}${colors.reset}`);
-}
-
-function runCommand(cmd, description) {
+function run(cmd) {
+  console.log(`\n$ ${cmd}`);
   try {
-    log(`\n📌 ${description}`, 'cyan');
-    const output = execSync(cmd, { 
-      encoding: 'utf-8', 
-      stdio: 'pipe',
-      cwd: rootDir
-    });
-    if (output.trim()) {
-      console.log(output);
+    const output = execSync(cmd, { encoding: 'utf-8', stdio: 'pipe' });
+    console.log(output.trim());
+    return output;
+  } catch (err) {
+    console.error('❌ Error:', err.stderr?.trim() || err.message);
+    process.exit(1);
+  }
+}
+
+function extractDatabaseId(output) {
+  const match = output.match(/database_id\s*=\s*"([a-f0-9-]+)"/);
+  return match ? match[1] : null;
+}
+
+function main() {
+  console.log('🛠️  D1 Database Initialization for Trishanku Baba\n');
+  console.log('═'.repeat(60));
+
+  const ids = {};
+
+  for (const db of DATABASES) {
+    console.log(`\n📦 Creating database: ${db.name}`);
+    console.log('─'.repeat(40));
+
+    const output = run(`wrangler d1 create ${db.name}`);
+    const id = extractDatabaseId(output);
+
+    if (!id) {
+      console.error(`❌ Could not extract database_id for ${db.name}`);
+      process.exit(1);
     }
-    return true;
-  } catch (error) {
-    log(`Error executing: ${cmd}`, 'red');
-    log(error.stderr || error.message, 'red');
-    return false;
+
+    ids[db.binding] = id;
+    console.log(`\n✅ ${db.name} created — ID: ${id}`);
+
+    // Apply schema
+    if (fs.existsSync(db.schema)) {
+      console.log(`\n📋 Applying schema: ${db.schema}`);
+      run(`wrangler d1 execute ${db.name} --file=./${db.schema} --remote`);
+    } else {
+      console.warn(`⚠  Schema file ${db.schema} not found, skipping migration`);
+    }
   }
+
+  // Print instructions
+  console.log('\n' + '═'.repeat(60));
+  console.log('✅ BOTH DATABASES CREATED SUCCESSFULLY!\n');
+  console.log('⚠️  NEXT STEP: Update your wrangler.toml with these IDs:\n');
+  console.log('[[d1_databases]]');
+  console.log(`binding = "BLOG_DB"`);
+  console.log(`database_name = "blog-db"`);
+  console.log(`database_id = "${ids.BLOG_DB}"`);
+  console.log('');
+  console.log('[[d1_databases]]');
+  console.log(`binding = "USERS_DB"`);
+  console.log(`database_name = "users-db"`);
+  console.log(`database_id = "${ids.USERS_DB}"`);
+  console.log('\n' + '═'.repeat(60));
+  console.log('After updating wrangler.toml, run: npm run deploy');
 }
 
-async function listDatabases() {
-  log('\n📋 Listing existing D1 databases...', 'yellow');
-  runCommand('wrangler d1 list', 'Fetching database list');
-}
-
-async function createBlogDatabase() {
-  log('\n🔧 Creating/Updating blog-db...', 'yellow');
-  
-  // Create database (if not exists)
-  runCommand(
-    'wrangler d1 create blog-db 2>/dev/null || echo "Database may already exist"',
-    'Creating blog-db'
-  );
-  
-  // Run schema migration
-  const schemaPath = join(rootDir, 'blog-schema.sql');
-  if (existsSync(schemaPath)) {
-    runCommand(
-      `wrangler d1 execute blog-db --file=${schemaPath} --remote`,
-      'Applying blog-schema.sql to blog-db'
-    );
-    log('✅ blog-db initialized successfully!', 'green');
-  } else {
-    log('Warning: blog-schema.sql not found!', 'red');
-  }
-}
-
-async function createUsersDatabase() {
-  log('\n🔧 Creating/Updating users-db...', 'yellow');
-  
-  // Create database (if not exists)
-  runCommand(
-    'wrangler d1 create users-db 2>/dev/null || echo "Database may already exist"',
-    'Creating users-db'
-  );
-  
-  // Run schema migration
-  const schemaPath = join(rootDir, 'users-schema.sql');
-  if (existsSync(schemaPath)) {
-    runCommand(
-      `wrangler d1 execute users-db --file=${schemaPath} --remote`,
-      'Applying users-schema.sql to users-db'
-    );
-    log('✅ users-db initialized successfully!', 'green');
-  } else {
-    log('Warning: users-schema.sql not found!', 'red');
-  }
-}
-
-function showHelp() {
-  log(`
-╔══════════════════════════════════════════════════════════════╗
-║     Cloudflare D1 Database Initialization Helper            ║
-║         For himvedicherbals (Trishanku Baba)                ║
-╠══════════════════════════════════════════════════════════════╣
-║                                                              ║
-║  Usage:                                                      ║
-║    node scripts/init-databases.js [command]                  ║
-║                                                              ║
-║  Commands:                                                   ║
-║    (no args)   Initialize both blog-db and users-db          ║
-║    --blog      Initialize only blog-db                       ║
-║    --users     Initialize only users-db                      ║
-║    --list      List all existing D1 databases                ║
-║    --help      Show this help message                        ║
-║                                                              ║
-║  Prerequisites:                                              ║
-║    ✅ Wrangler CLI installed (npm install -g wrangler)       ║
-║    ✅ Cloudflare account authenticated (wrangler login)      ║
-║    ✅ blog-schema.sql in project root                        ║
-║    ✅ users-schema.sql in project root                       ║
-║                                                              ║
-║  After running this script:                                  ║
-║    1. Copy the database IDs from the output                 ║
-║    2. Update wrangler.toml with the IDs                     ║
-║    3. Run: npm run deploy                                    ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
-`, 'cyan');
-}
-
-// Main execution
-const args = process.argv.slice(2);
-
-log('\n🌿 Trishanku Baba - D1 Database Setup', 'yellow');
-log('═════════════════════════════════════\n', 'yellow');
-
-if (args.includes('--help') || args.includes('-h')) {
-  showHelp();
-} else if (args.includes('--list')) {
-  await listDatabases();
-} else if (args.includes('--blog')) {
-  await createBlogDatabase();
-} else if (args.includes('--users')) {
-  await createUsersDatabase();
-} else {
-  // Default: initialize both
-  await createUsersDatabase();
-  await createBlogDatabase();
-  
-  log(`
-╔══════════════════════════════════════════════════════════════╗
-║                    Next Steps                                ║
-╠══════════════════════════════════════════════════════════════╣
-║                                                              ║
-║  1️⃣  Copy the database_id values from above output          ║
-║                                                              ║
-║  2️⃣  Update wrangler.toml:                                   ║
-║      [[d1_databases]]                                        ║
-║      binding = "BLOG_DB"                                     ║
-║      database_name = "blog-db"                               ║
-║      database_id = "PASTE_BLOG_DB_ID_HERE"                   ║
-║                                                              ║
-║      [[d1_databases]]                                        ║
-║      binding = "USERS_DB"                                    ║
-║      database_name = "users-db"                              ║
-║      database_id = "PASTE_USERS_DB_ID_HERE"                  ║
-║                                                              ║
-║  3️⃣  Deploy to Cloudflare Pages:                            ║
-║      npm run deploy                                          ║
-║                                                              ║
-╚══════════════════════════════════════════════════════════════╝
-`, 'cyan');
-}
+const fs = require('fs');
+main();

@@ -1,157 +1,104 @@
-#!/usr/bin/env node
 /**
- * Build Script for Cloudflare Pages Deployment
- * 
- * This script:
- * 1. Creates the dist/ directory
- * 2. Copies all static assets (HTML, CSS, JS, images, data)
- * 3. Copies Cloudflare configuration files (_headers, _redirects, robots.txt)
- * 4. Prepares functions/ for Cloudflare Pages Functions
+ * Build Script for Cloudflare Pages
+ * Copies static assets and functions into dist/
  */
 
-import { copyFile, mkdir, readdir, stat, writeFile } from 'fs/promises';
-import { join, relative, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { existsSync } from 'fs';
+const fs = require('fs');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
-const distDir = join(rootDir, 'dist');
+const ROOT = path.resolve(__dirname, '..');
+const DIST = path.join(ROOT, 'dist');
 
-// Directories to copy to dist/
+// Directories/files to copy to dist
 const STATIC_DIRS = ['css', 'js', 'images', 'data'];
+const STATIC_FILES = ['index.html', '_headers', '_redirects', 'robots.txt', 'favicon.svg'];
+const FUNCTIONS_DIR = 'functions';
 
-// Files to copy to dist/ root
-const ROOT_FILES = [
-  'index.html',
-  '_headers',
-  '_redirects',
-  'robots.txt'
-];
-
-// Console colors for pretty output
-const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  red: '\x1b[31m'
-};
-
-function log(message, color = 'reset') {
-  console.log(`${colors[color]}${message}${colors.reset}`);
-}
-
-async function ensureDir(dirPath) {
-  if (!existsSync(dirPath)) {
-    await mkdir(dirPath, { recursive: true });
-    log(`Created: ${relative(rootDir, dirPath)}`, 'green');
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
 }
 
-async function copyDirectory(src, dest) {
-  await ensureDir(dest);
-  const entries = await readdir(src);
-  
+function copyDir(src, dest) {
+  ensureDir(dest);
+  const entries = fs.readdirSync(src, { withFileTypes: true });
   for (const entry of entries) {
-    const srcPath = join(src, entry);
-    const destPath = join(dest, entry);
-    const stats = await stat(srcPath);
-    
-    if (stats.isDirectory()) {
-      await copyDirectory(srcPath, destPath);
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
     } else {
-      await copyFile(srcPath, destPath);
-      log(`Copied: ${relative(rootDir, srcPath)}`, 'blue');
+      fs.copyFileSync(srcPath, destPath);
     }
   }
 }
 
-async function copyRootFile(filename) {
-  const srcPath = join(rootDir, filename);
-  const destPath = join(distDir, filename);
-  
-  if (existsSync(srcPath)) {
-    await copyFile(srcPath, destPath);
-    log(`Copied: ${filename}`, 'blue');
+function copyFile(src, dest) {
+  ensureDir(path.dirname(dest));
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dest);
   } else {
-    log(`Warning: ${filename} not found, skipping`, 'yellow');
+    console.warn(`  ⚠  File not found, skipping: ${src}`);
   }
 }
 
-async function createFunctionsDir() {
-  const functionsDir = join(distDir, 'functions');
-  
-  // Check if source functions exist
-  const sourceFunctionsDir = join(rootDir, 'functions');
-  
-  if (existsSync(sourceFunctionsDir)) {
-    await copyDirectory(sourceFunctionsDir, functionsDir);
-    log('Copied: functions/', 'blue');
-  } else {
-    log('Warning: No functions/ directory found in source', 'yellow');
+function main() {
+  console.log('🚀 Building for Cloudflare Pages...\n');
+
+  // Clean dist
+  if (fs.existsSync(DIST)) {
+    fs.rmSync(DIST, { recursive: true, force: true });
   }
-}
+  ensureDir(DIST);
 
-async function createBuildInfo() {
-  const buildInfo = {
-    timestamp: new Date().toISOString(),
-    version: process.env.npm_package_version || '2.0.0',
-    environment: process.env.NODE_ENV || 'development',
-    nodeVersion: process.version
-  };
-  
-  await writeFile(
-    join(distDir, 'build-info.json'),
-    JSON.stringify(buildInfo, null, 2)
-  );
-  log('Created: build-info.json', 'green');
-}
-
-async function main() {
-  const startTime = Date.now();
-  
-  log('\n🚀 Starting Cloudflare Pages Build...\n', 'yellow');
-  log(`Source: ${rootDir}`, 'reset');
-  log(`Output: ${distDir}\n`, 'reset');
-  
-  // Clean and create dist directory
-  log('\n📁 Setting up build directory...', 'yellow');
-  await ensureDir(distDir);
-  
   // Copy static directories
-  log('\n📦 Copying static assets...', 'yellow');
+  console.log('📁 Copying static directories:');
   for (const dir of STATIC_DIRS) {
-    const srcPath = join(rootDir, dir);
-    if (existsSync(srcPath)) {
-      await copyDirectory(srcPath, join(distDir, dir));
+    const src = path.join(ROOT, dir);
+    if (fs.existsSync(src)) {
+      copyDir(src, path.join(DIST, dir));
+      console.log(`  ✅ ${dir}/`);
     } else {
-      log(`Warning: ${dir}/ not found, skipping`, 'yellow');
+      console.warn(`  ⚠  ${dir}/ — not found, skipping`);
     }
   }
-  
-  // Copy root files
-  log('\n📄 Copying root files...', 'yellow');
-  for (const file of ROOT_FILES) {
-    await copyRootFile(file);
+
+  // Copy static files
+  console.log('\n📄 Copying static files:');
+  for (const file of STATIC_FILES) {
+    copyFile(path.join(ROOT, file), path.join(DIST, file));
+    console.log(`  ✅ ${file}`);
   }
-  
-  // Copy functions
-  log('\n⚡ Processing Cloudflare Functions...', 'yellow');
-  await createFunctionsDir();
-  
-  // Create build info
-  await createBuildInfo();
-  
-  const endTime = Date.now();
-  const duration = ((endTime - startTime) / 1000).toFixed(2);
-  
-  log(`\n✅ Build completed in ${duration}s!`, 'green');
-  log(`Output ready at: ${distDir}\n`, 'blue');
+
+  // Copy functions directory
+  const functionsSrc = path.join(ROOT, FUNCTIONS_DIR);
+  if (fs.existsSync(functionsSrc)) {
+    console.log('\n⚡ Copying Cloudflare Functions:');
+    copyDir(functionsSrc, path.join(DIST, FUNCTIONS_DIR));
+    console.log('  ✅ functions/');
+  } else {
+    console.warn('\n⚠  No functions/ directory found — API endpoints will not work');
+  }
+
+  // Summary
+  console.log('\n' + '─'.repeat(50));
+  console.log('✅ Build complete!');
+  console.log(`   Output: ${DIST}/`);
+
+  // List what was created
+  const countFiles = (dir) => {
+    let count = 0;
+    if (!fs.existsSync(dir)) return 0;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const e of entries) {
+      if (e.isDirectory()) count += countFiles(path.join(dir, e.name));
+      else count++;
+    }
+    return count;
+  };
+  console.log(`   Files: ${countFiles(DIST)}`);
+  console.log('─'.repeat(50) + '\n');
 }
 
-main().catch(error => {
-  console.error('\n❌ Build failed:', error.message, '\n');
-  process.exit(1);
-});
+main();

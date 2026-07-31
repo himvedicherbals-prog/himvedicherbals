@@ -1,77 +1,89 @@
 /**
  * POST /api/inquiry
- * 
- * Handles contact form submissions.
- * Validates input and returns success/error response.
- * This endpoint doesn't use any database (could optionally store in D1).
+ * Handles contact form submissions
+ * In production, integrate with email service (SendGrid, Mailgun, etc.)
  */
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
-  try {
-    // Parse form data
-    const data = await request.json();
-    
-    // Validate required fields
-    const { name, email, phone, subject, message } = data;
-    
-    if (!name || !email || !message) {
-      return new Response(JSON.stringify({
-        error: 'Missing required fields: name, email, and message are required'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-    
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response(JSON.stringify({
-        error: 'Invalid email format'
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-    
-    // Here you could:
-    // 1. Send email via Cloudflare Email Workers
-    // 2. Store in D1 database for records
-    // 3. Send to external CRM
-    
-    // Log the inquiry (for debugging - remove in production)
-    console.log('New inquiry:', {
-      name,
-      email,
-      phone: phone || '',
-      subject: subject || '',
-      message,
-      timestamp: new Date().toISOString()
-    });
-    
-    // Success response
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Inquiry submitted successfully! We will contact you soon.',
-      inquiryId: `inq_${Date.now()}`
-    }), {
-      status: 200,
-      headers: { 
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-store' // Don't cache POST responses
-      }
-    });
-    
-  } catch (error) {
-    console.error('Inquiry processing error:', error);
-    
-    return new Response(JSON.stringify({
-      error: 'Failed to process inquiry. Please try again.'
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
+
+  // CORS preflight
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: corsHeaders(env),
     });
   }
+
+  try {
+    const body = await request.json();
+    const { name, email, phone, subject, message } = body;
+
+    // Validation
+    const errors = [];
+
+    if (!name || typeof name !== 'string' || name.trim().length < 2) {
+      errors.push('Name must be at least 2 characters');
+    }
+    if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.push('Valid email is required');
+    }
+    if (!message || typeof message !== 'string' || message.trim().length < 10) {
+      errors.push('Message must be at least 10 characters');
+    }
+
+    if (errors.length > 0) {
+      return jsonResponse({ success: false, errors }, 400, env);
+    }
+
+    // Log the inquiry (in production, send email / store in D1 / etc.)
+    console.log('📩 New inquiry received:', {
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone?.trim() || 'N/A',
+      subject: subject?.trim() || 'General Inquiry',
+      messageLength: message.trim().length,
+      timestamp: new Date().toISOString(),
+    });
+
+    // Optional: Store in a D1 table if you create one
+    // await env.BLOG_DB.prepare(
+    //   'INSERT INTO inquiries (name, email, phone, subject, message, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+    // ).bind(name.trim(), email.trim(), phone?.trim() || null, subject?.trim() || null, message.trim(), new Date().toISOString()).run();
+
+    return jsonResponse(
+      {
+        success: true,
+        message: 'Thank you for your inquiry! We will get back to you soon.',
+      },
+      200,
+      env
+    );
+  } catch (err) {
+    console.error('Inquiry error:', err);
+    return jsonResponse({ success: false, error: 'Invalid request body' }, 400, env);
+  }
+}
+
+// Handle OPTIONS for CORS
+export async function onRequestOptions(context) {
+  return new Response(null, { headers: corsHeaders(context.env) });
+}
+
+function corsHeaders(env) {
+  const origin = env.CORS_ORIGIN || '*';
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
+
+function jsonResponse(data, status, env) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': env.CORS_ORIGIN || '*',
+    },
+  });
 }
