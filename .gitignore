@@ -1,44 +1,25 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
-# Build output
-dist/
-.wrangler/
-.dev/
-
-# Environment files (keep secrets safe!)
+# Environment
 .env
 .env.local
 .env.production
-*.env
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-wrangler-debug.log
+# Cloudflare
+.wrangler/
+.dev.vars
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
-*.swp
-*.swo
-*~
 
 # IDE
-.idea/
 .vscode/
-*.sublime-project
-*.sublime-workspace
+.idea/
+*.swp
+*.swo
 
-# Temporary files
-tmp/
-temp/
+# Build
+dist/
 .cache/
-
-# Cloudflare specific
-.cf/
-.dev.vars
