@@ -63,7 +63,7 @@ ADMIN_PASSWORD = "changeme123"
 # Overrides production values for testing
 # =============================================================================
 [env.preview]
-name = "gaumatosewa-preview"
+name = "himvedicherbal - preview"
 
 [env.preview.vars]
 SITE_NAME = "VedaBotanica Research and Development [PREVIEW]"
