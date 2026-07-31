@@ -1,0 +1,104 @@
+# Cloudflare Pages + Workers Configuration
+# For himvedicherbals - Trishanku Baba (Gau Products E-commerce)
+
+name = "himvedicherbals"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================
+# D1 Database Bindings
+# ============================================
+[[d1_databases]]
+binding = "BLOG_DB"                    # Available in Workers as env.BLOG_DB
+database_name = "blog-db"
+database_id = "YOUR_BLOG_DB_ID"        # Replace with actual D1 database ID
+
+[[d1_databases]]
+binding = "USERS_DB"                   # Available in Workers as env.USERS_DB
+database_name = "users-db"
+database_id = "YOUR_USERS_DB_ID"       # Replace with actual D1 database ID
+
+# ============================================
+# Environment Variables - Production
+# ============================================
+[vars]
+# Site Identity
+SITE_NAME = "Trishanku Baba"
+SITE_TAGLINE = "Your trusted source for premium organic gau products & Ayurvedic herbs"
+SITE_COPYRIGHT = "© 2025 Trishanku Baba. All rights reserved."
+
+# Contact Information
+CONTACT_EMAIL = "gaumatosewa@gmail.com"
+CONTACT_PHONE = "+977-9800000000"
+
+# Location (Kathmandu, Nepal)
+ADDRESS_CITY = "Kathmandu"
+ADDRESS_PROVINCE = "Bagmati"
+ADDRESS_COUNTRY = "Nepal"
+
+# Currency Settings
+DEFAULT_CURRENCY = "USD"
+EXCHANGE_RATE_TO_NPR = "133.50"
+
+# Admin Credentials (first signup becomes admin)
+ADMIN_EMAIL = "gaumatosewa@gmail.com"
+ADMIN_USERNAME = "admin"
+
+# JWT Secret for authentication (CHANGE THIS IN PRODUCTION!)
+JWT_SECRET = "your-super-secret-jwt-key-change-in-production-min-32-chars"
+
+# Session Settings
+SESSION_EXPIRY_DAYS = "30"
+
+# Security
+BCRYPT_ROUNDS = "10"
+CORS_ORIGIN = "*"
+
+# ============================================
+# Environment Variables - Preview/Development
+# ============================================
+[env.preview.vars]
+SITE_NAME = "Trishanku Baba [PREVIEW]"
+SITE_TAGLINE = "[Preview] Your trusted source for premium organic gau products"
+SITE_COPYRIGHT = "© 2025 Trishanku Baba [Preview Mode]"
+
+CONTACT_EMAIL = "gaumatosewa@gmail.com"
+CONTACT_PHONE = "+977-9800000000"
+
+ADDRESS_CITY = "Kathmandu"
+ADDRESS_PROVINCE = "Bagmati"
+ADDRESS_COUNTRY = "Nepal"
+
+DEFAULT_CURRENCY = "USD"
+EXCHANGE_RATE_TO_NPR = "133.50"
+
+ADMIN_EMAIL = "gaumatosewa@gmail.com"
+ADMIN_USERNAME = "admin"
+
+JWT_SECRET = "preview-jwt-secret-change-me"
+SESSION_EXPIRY_DAYS = "30"
+BCRYPT_ROUNDS = "10"
+CORS_ORIGIN = "*"
+
+# ============================================
+# Build Configuration
+# ============================================
+[build]
+command = "npm run build"
+
+# ============================================
+# Static Assets Routing
+# ============================================
+[assets]
+directory = "dist"
+not_found = "/index.html"
+
+# ============================================
+# Rate Limiting Configuration
+# ============================================
+# Note: Configure rate limiting in Cloudflare Dashboard
+# Recommended limits:
+# - API endpoints: 100 requests/minute per IP
+# - Auth endpoints: 10 requests/minute per IP
+# - Blog comments: 5 submissions/minute per IP
