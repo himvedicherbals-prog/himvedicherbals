@@ -1,49 +1,56 @@
-# Cloudflare Pages Configuration
-# For himvedicherbals - Trishanku Baba (Static Site + D1)
-
 name = "himvedicherbals"
-pages_build_output_dir = "."          # Static site - output is root directory
-compatibility_date = "2024-12-01"
+compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
 
-# ============================================
-# D1 Database Bindings
-# ============================================
+# ==============================================================================
+# D1 DATABASE BINDINGS
+# ==============================================================================
+# ⚠️ CRITICAL: After running `node scripts/init-databases.js`,
+#    replace the placeholder IDs below with your actual database IDs.
+# ==============================================================================
+
 [[d1_databases]]
-binding = "BLOG_DB"                    # Available in Workers as env.BLOG_DB
+binding = "BLOG_DB"
 database_name = "blog-db"
-database_id = "YOUR_BLOG_DB_ID"        # Replace with actual D1 database ID
+database_id = "PASTE_YOUR_BLOG_DB_ID_HERE"
 
 [[d1_databases]]
-binding = "USERS_DB"                   # Available in Workers as env.USERS_DB
+binding = "USERS_DB"
 database_name = "users-db"
-database_id = "YOUR_USERS_DB_ID"       # Replace with actual D1 database ID
+database_id = "PASTE_YOUR_USERS_DB_ID_HERE"
 
-# ============================================
-# Environment Variables
-# ============================================
+# ==============================================================================
+# ENVIRONMENT VARIABLES
+# ==============================================================================
+
 [vars]
 SITE_NAME = "Trishanku Baba"
-SITE_TAGLINE = "Your trusted source for premium organic gau products & Ayurvedic herbs"
-SITE_COPYRIGHT = "© 2025 Trishanku Baba. All rights reserved."
-CONTACT_EMAIL = "gaumatosewa@gmail.com"
-CONTACT_PHONE = "+977-9800000000"
-ADDRESS_CITY = "Kathmandu"
-ADDRESS_PROVINCE = "Bagmati"
-ADDRESS_COUNTRY = "Nepal"
-DEFAULT_CURRENCY = "USD"
-EXCHANGE_RATE_TO_NPR = "133.50"
-ADMIN_EMAIL = "gaumatosewa@gmail.com"
-ADMIN_USERNAME = "admin"
-JWT_SECRET = "your-super-secret-jwt-key-change-in-production-min-32-chars"
+SITE_TAGLINE = "Premium Organic Gau Products & Medicinal Herbs from Nepal"
+CONTACT_EMAIL = "your@email.com"
+ADMIN_EMAIL = "admin@himvedicherbals.com"
+JWT_SECRET = "CHANGE-THIS-TO-A-RANDOM-32-CHAR-STRING-NOW"
 SESSION_EXPIRY_DAYS = "30"
-BCRYPT_ROUNDS = "10"
 CORS_ORIGIN = "*"
 
-# ============================================
-# Build Configuration - STATIC SITE (No build step needed!)
-# ============================================
-[build]
-command = "echo 'Static site - no build required'"   # ← NO next build!
+# ==============================================================================
+# DEVELOPMENT (local) OVERRIDES
+# ==============================================================================
 
-# Cloudflare Pages will serve files from root directory
+[env.dev]
+name = "himvedicherbals-dev"
+
+[env.dev.vars]
+SITE_NAME = "Trishanku Baba (Dev)"
+JWT_SECRET = "dev-secret-change-in-production-only"
+
+# ==============================================================================
+# PRODUCTION OVERRIDES
+# ==============================================================================
+
+[env.production]
+name = "himvedicherbals"
+
+# For production secrets, use:
+#   wrangler secret put JWT_SECRET --env production
+# instead of putting them here.
