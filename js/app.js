@@ -121,9 +121,10 @@ function renderCategoryShowcase() {
     if (!container) return;
 
     const bgColors = {
-        'gau-products': { card: 'bg-amber-50 border-amber-100', icon: 'bg-amber-100 text-amber-700', title: 'text-amber-800', desc: 'text-amber-700/70', link: 'text-amber-700' },
-        'bacterial-fertilizers': { card: 'bg-emerald-50 border-emerald-100', icon: 'bg-emerald-100 text-emerald-700', title: 'text-emerald-800', desc: 'text-emerald-700/70', link: 'text-emerald-700' },
-        'herbs': { card: 'bg-green-50 border-green-100', icon: 'bg-green-100 text-green-700', title: 'text-green-800', desc: 'text-green-700/70', link: 'text-green-700' }
+        'herbs': { card: 'bg-green-50 border-green-100', icon: 'bg-green-100 text-green-700', title: 'text-green-800', desc: 'text-green-700/70', link: 'text-green-700' },
+        'resin': { card: 'bg-amber-50 border-amber-100', icon: 'bg-amber-100 text-amber-700', title: 'text-amber-800', desc: 'text-amber-700/70', link: 'text-amber-700' },
+        'oils': { card: 'bg-yellow-50 border-yellow-100', icon: 'bg-yellow-100 text-yellow-700', title: 'text-yellow-800', desc: 'text-yellow-700/70', link: 'text-yellow-700' },
+        'seeds': { card: 'bg-lime-50 border-lime-100', icon: 'bg-lime-100 text-lime-700', title: 'text-lime-800', desc: 'text-lime-700/70', link: 'text-lime-700' }
     };
 
     container.innerHTML = AppData.categories.map(cat => {
@@ -153,9 +154,10 @@ function renderHeroTrustBadges() {
     if (!container) return;
 
     const badges = [
-        { emoji: '🍃', label: 'Gau Products', sub: '5+ items' },
-        { emoji: '🧪', label: 'Bio Fertilizers', sub: '5+ blends' },
-        { emoji: '🌱', label: 'Organic Herbs', sub: '5+ varieties' }
+        { emoji: '🌱', label: 'Herbs', sub: '5+ varieties' },
+        { emoji: '🌲', label: 'Resin', sub: '5+ types' },
+        { emoji: '🫒', label: 'Oils', sub: '5+ oils' },
+        { emoji: '🫘', label: 'Seeds', sub: '5+ kinds' }
     ];
 
     container.innerHTML = badges.map(b => `
