@@ -4,13 +4,20 @@
  * POST { slug, vid } → Record a view (once per visitor per session)
  */
 
+import { corsHeaders as buildCorsHeaders } from '../../_lib/cors.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const db = env.DB;
   const url = new URL(request.url);
+  const corsOpts = { methods: 'GET, POST, OPTIONS', headers: 'Content-Type' };
+  const json = (data, status = 200) => new Response(JSON.stringify(data), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...buildCorsHeaders(request, env, corsOpts) },
+  });
 
   if (request.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders() });
+    return new Response(null, { headers: buildCorsHeaders(request, env, corsOpts) });
   }
 
   // --- GET: View count ---
@@ -61,21 +68,6 @@ export async function onRequest(context) {
   }
 
   return json({ error: 'Method not allowed' }, 405);
-}
-
-function json(data, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: { 'Content-Type': 'application/json', ...corsHeaders() },
-  });
-}
-
-function corsHeaders() {
-  return {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-  };
 }
 
 async function hashStr(str) {

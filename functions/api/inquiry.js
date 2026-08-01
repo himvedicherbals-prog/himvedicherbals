@@ -13,12 +13,15 @@
  * - SITE_NAME: Site name used in email headers
  */
 
+import { corsHeaders as buildCorsHeaders } from '../_lib/cors.js';
+
 export async function onRequestPost(context) {
     // CORS headers for cross-origin requests
     const corsHeaders = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        ...buildCorsHeaders(context.request, context.env, {
+            methods: 'POST, OPTIONS',
+            headers: 'Content-Type',
+        }),
         'Content-Type': 'application/json'
     };
 

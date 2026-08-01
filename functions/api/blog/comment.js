@@ -4,13 +4,16 @@
  * POST { slug, text, parent_id? } → Create comment (auth required)
  */
 
+import { corsHeaders as cors } from '../../_lib/cors.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const db = env.DB;
   const USERS = env.DB1;
   const url = new URL(request.url);
+  const j = (d, s = 200) => new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', ...cors(request, env) } });
 
-  if (request.method === 'OPTIONS') return new Response(null, { headers: cors() });
+  if (request.method === 'OPTIONS') return new Response(null, { headers: cors(request, env) });
 
   // --- GET: List comments ---
   if (request.method === 'GET') {
@@ -121,8 +124,6 @@ export async function onRequest(context) {
   return j({ error: 'Method not allowed' }, 405);
 }
 
-function j(d, s = 200) { return new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', ...cors() } }); }
-function cors() { return { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type,Authorization' }; }
 async function hashStr(s) {
   const d = new TextEncoder().encode(s);
   const h = await crypto.subtle.digest('SHA-256', d);

@@ -56,6 +56,11 @@ export async function onRequest(context) {
       "Content-Type": "application/json",
       // Short edge cache so the displayed rate stays fresh throughout the day
       "Cache-Control": "public, max-age=300",
+      // Intentionally left as '*' (unlike the other API functions): this
+      // endpoint only returns public, non-sensitive site info (name,
+      // contact details, exchange rate), so allowing any origin to read
+      // it is not a security concern. See functions/_lib/cors.js for the
+      // restricted helper used by the auth/inquiry/blog endpoints.
       "Access-Control-Allow-Origin": "*",
     },
   });

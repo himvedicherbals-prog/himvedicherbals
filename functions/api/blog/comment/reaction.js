@@ -1,9 +1,12 @@
+import { corsHeaders as cors } from '../../../_lib/cors.js';
+
 export async function onRequest(context) {
   const { request, env } = context;
   const db = env.DB;
   const url = new URL(request.url);
+  const j = (d, s = 200) => new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', ...cors(request, env, { methods: 'POST,OPTIONS', headers: 'Content-Type' }) } });
 
-  if (request.method === 'OPTIONS') return new Response(null, { headers: cors() });
+  if (request.method === 'OPTIONS') return new Response(null, { headers: cors(request, env, { methods: 'POST,OPTIONS', headers: 'Content-Type' }) });
   if (request.method !== 'POST') return j({ error: 'Method not allowed' }, 405);
 
   try {
@@ -42,6 +45,3 @@ export async function onRequest(context) {
     return j({ error: 'Invalid request' }, 400);
   }
 }
-
-function j(d, s = 200) { return new Response(JSON.stringify(d), { status: s, headers: { 'Content-Type': 'application/json', ...cors() } }); }
-function cors() { return { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' }; }
