@@ -7,6 +7,9 @@
  * Environment Variables (set in Cloudflare Dashboard or wrangler.toml):
  * - BREVO_API: Your Brevo API key
  * - CONTACT_EMAIL: Destination email for inquiries
+ * - SENDER_EMAIL: "From" address used to send via Brevo (must be a
+ *   verified sender in your Brevo account). Falls back to CONTACT_EMAIL,
+ *   then to gaumatosewa@gmail.com if unset.
  * - SITE_NAME: Site name used in email headers
  */
 
@@ -54,8 +57,9 @@ export async function onRequestPost(context) {
 
         // Get configuration from environment
         const brevoApiKey = context.env.BREVO_API;
-        const toEmail = context.env.CONTACT_EMAIL || 'gaumatosewa@gmail.com';
-        const siteName = context.env.SITE_NAME || 'Trishanku Baba';
+        const toEmail = context.env.CONTACT_EMAIL;
+        const senderEmail = context.env.SENDER_EMAIL || context.env.CONTACT_EMAIL;
+        const siteName = context.env.SITE_NAME;
 
         if (!brevoApiKey) {
             console.error('BREVO_API environment variable not set');
@@ -174,7 +178,7 @@ Please respond to this inquiry at the customer's email address above.
             body: JSON.stringify({
                 sender: {
                     name: `${siteName} Website`,
-                    email: 'gaumatosewa@gmail.com' // MUST match verified sender in Brevo account
+                    email: senderEmail // MUST match a verified sender in your Brevo account
                 },
                 to: [{ email: toEmail, name: `${siteName} Team` }],
                 replyTo: { email: email, name: name },
