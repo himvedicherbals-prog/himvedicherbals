@@ -21,10 +21,10 @@ export async function onRequest(context) {
     const salt = crypto.randomUUID().replace(/-/g, '');
     const hash = await hashPw(password, salt);
 
-    // First user or ADMIN_EMAIL match becomes admin
-    const adminEmail = env.ADMIN_EMAIL || '';
-    const count = await USERS.prepare('SELECT COUNT(*) as c FROM users').first();
-    const isAdmin = (count.c === 0) || (email.toLowerCase() === adminEmail.toLowerCase()) ? 1 : 0;
+    // Admin status is ONLY granted via the ADMIN_EMAIL env var match -
+    // regular signups are never admin, regardless of signup order.
+    const adminEmail = (env.ADMIN_EMAIL || '').toLowerCase();
+    const isAdmin = (adminEmail && email.toLowerCase() === adminEmail) ? 1 : 0;
 
     const result = await USERS.prepare(
       'INSERT INTO users (username, email, password_hash, salt, display_name, is_admin) VALUES (?, ?, ?, ?, ?, ?)'
