@@ -54,8 +54,8 @@ EXCHANGE_RATE_TO_NPR = "133.50"
 
 # Admin: first signup or this email becomes admin
 ADMIN_EMAIL = "gaumatosewa@gmail.com"
-ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = "changeme123"
+ADMIN_USERNAME = ""
+ADMIN_PASSWORD = ""
 
 ALLOWED_ORIGINS = https://your-actual-domain.pages.dev
 
