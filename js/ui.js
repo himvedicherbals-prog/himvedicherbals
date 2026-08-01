@@ -134,6 +134,11 @@ const UI = {
             btn.classList.toggle('active', btn.dataset.category === cat);
         });
         this.renderProducts();
+        // Auto-scroll to products section
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+            productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     },
 
     filterProducts() {
