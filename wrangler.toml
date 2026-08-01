@@ -57,6 +57,7 @@ ADMIN_EMAIL = "gaumatosewa@gmail.com"
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "changeme123"
 
+ALLOWED_ORIGINS = https://your-actual-domain.pages.dev
 
 # =============================================================================
 # Preview Environment (for pull requests)
