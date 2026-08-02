@@ -36,6 +36,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["100g", "250g", "500g", "1 Kg", "5 Kg"],
         "multiplier": {"100g": 0.22, "250g": 0.48, "500g": 1, "1 Kg": 1.85, "5 Kg": 8.0},
+        "forms": ["Raw Form", "Powder Form"],
+        "default_form": "raw",
+        "show_form_selector": True,
         "description_template": "Premium quality {name} sourced from organic farms. Traditionally used in Ayurvedic medicine for its therapeutic properties. Carefully processed to preserve potency and freshness."
     },
     "resin": {
@@ -45,6 +48,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["25g", "50g", "100g", "250g", "500g"],
         "multiplier": {"25g": 0.3, "50g": 0.55, "100g": 1, "250g": 2.2, "500g": 4.0},
+        "forms": ["Raw Resin", "Powdered"],
+        "default_form": "raw",
+        "show_form_selector": True,
         "description_template": "Pure natural {name} harvested from authentic sources. Ideal for rituals, aromatherapy, and traditional preparations. Ethically sourced and laboratory tested for purity."
     },
     "oils": {
@@ -54,6 +60,9 @@ CATEGORY_CONFIG = {
         "unit_type": "volume",
         "weights": ["100ml", "250ml", "500ml", "1 Ltr", "5 Ltr"],
         "multiplier": {"100ml": 0.45, "250ml": 1, "500g": 1.75, "1 Ltr": 3.2, "5 Ltr": 14.0},
+        "forms": ["Liquid"],
+        "default_form": "liquid",
+        "show_form_selector": False,
         "description_template": "Traditional cold-pressed {name} extracted using time-honored methods. Rich in nutrients and essential compounds. Perfect for cooking, massage, skincare, and Ayurvedic therapies."
     },
     "seeds": {
@@ -63,6 +72,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["100g", "250g", "500g", "1 Kg"],
         "multiplier": {"100g": 0.45, "250g": 1, "500g": 1.8, "1 Kg": 3.2},
+        "forms": ["Whole Seeds", "Ground Powder"],
+        "default_form": "whole",
+        "show_form_selector": True,
         "description_template": "Organic {name} carefully selected for quality and germination. Used in cooking, sprouting, and traditional remedies. High nutritional value with essential vitamins and minerals."
     },
     "soap": {
@@ -72,6 +84,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["75g", "100g", "125g", "150g"],
         "multiplier": {"75g": 0.75, "100g": 1, "125g": 1.2, "150g": 1.4},
+        "forms": ["1 Piece"],
+        "default_form": "piece",
+        "show_form_selector": False,
         "description_template": "Handcrafted herbal {name} made with pure essential oils and natural ingredients. Gentle on skin with no harsh chemicals. Suitable for daily use with nourishing Ayurvedic herbs."
     },
     "namak": {
@@ -81,6 +96,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["250g", "500g", "1 Kg", "5 Kg"],
         "multiplier": {"250g": 0.55, "500g": 1, "1 Kg": 1.85, "5 Kg": 8.0},
+        "forms": ["Crystals", "Powdered"],
+        "default_form": "crystals",
+        "show_form_selector": True,
         "description_template": "Traditional {name} rich in minerals and trace elements. Sourced from pristine natural deposits. Essential for cooking, fasting, and therapeutic salt water treatments."
     },
     "masala": {
@@ -90,6 +108,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["100g", "250g", "500g", "1 Kg"],
         "multiplier": {"100g": 0.45, "250g": 1, "500g": 1.75, "1 Kg": 3.2},
+        "forms": ["Whole Spice", "Ground Powder"],
+        "default_form": "whole",
+        "show_form_selector": True,
         "description_template": "Aromatic {name} hand-selected for premium quality and flavor. Essential spice for authentic Indian cooking and Ayurvedic formulations. Freshly ground for maximum aroma."
     },
     "mushroom": {
@@ -99,6 +120,9 @@ CATEGORY_CONFIG = {
         "unit_type": "weight",
         "weights": ["50g", "100g", "250g", "500g"],
         "multiplier": {"50g": 0.6, "100g": 1, "250g": 2.2, "500g": 4.0},
+        "forms": ["Dried Whole", "Powdered"],
+        "default_form": "dried",
+        "show_form_selector": True,
         "description_template": "Premium medicinal {name} cultivated under controlled conditions. Known for its immune-boosting and health-promoting properties. Used in traditional medicine and modern wellness supplements."
     }
 }
@@ -203,6 +227,10 @@ def create_product_from_image(image_path, category, product_id, index):
         "featured": index < 3,  # First 3 items are featured
         "weights": config["weights"],
         "priceMultiplier": config["multiplier"],
+        # Form options from category config
+        "forms": config.get("forms", ["Raw Form", "Powder Form"]),
+        "defaultForm": config.get("default_form", "raw"),
+        "showFormSelector": config.get("show_form_selector", True),
         "video": f"/videos/{filename.rsplit('.', 1)[0]}.mp4"
     }
     
