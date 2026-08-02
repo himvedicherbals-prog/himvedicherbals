@@ -124,7 +124,11 @@ function renderCategoryShowcase() {
         'herbs': { card: 'bg-green-50 border-green-100', icon: 'bg-green-100 text-green-700', title: 'text-green-800', desc: 'text-green-700/70', link: 'text-green-700' },
         'resin': { card: 'bg-amber-50 border-amber-100', icon: 'bg-amber-100 text-amber-700', title: 'text-amber-800', desc: 'text-amber-700/70', link: 'text-amber-700' },
         'oils': { card: 'bg-yellow-50 border-yellow-100', icon: 'bg-yellow-100 text-yellow-700', title: 'text-yellow-800', desc: 'text-yellow-700/70', link: 'text-yellow-700' },
-        'seeds': { card: 'bg-lime-50 border-lime-100', icon: 'bg-lime-100 text-lime-700', title: 'text-lime-800', desc: 'text-lime-700/70', link: 'text-lime-700' }
+        'seeds': { card: 'bg-lime-50 border-lime-100', icon: 'bg-lime-100 text-lime-700', title: 'text-lime-800', desc: 'text-lime-700/70', link: 'text-lime-700' },
+        'soap': { card: 'bg-sky-50 border-sky-100', icon: 'bg-sky-100 text-sky-700', title: 'text-sky-800', desc: 'text-sky-700/70', link: 'text-sky-700' },
+        'namak': { card: 'bg-slate-50 border-slate-100', icon: 'bg-slate-100 text-slate-700', title: 'text-slate-800', desc: 'text-slate-700/70', link: 'text-slate-700' },
+        'masala': { card: 'bg-red-50 border-red-100', icon: 'bg-red-100 text-red-700', title: 'text-red-800', desc: 'text-red-700/70', link: 'text-red-700' },
+        'mushroom': { card: 'bg-orange-50 border-orange-100', icon: 'bg-orange-100 text-orange-700', title: 'text-orange-800', desc: 'text-orange-700/70', link: 'text-orange-700' }
     };
 
     container.innerHTML = AppData.categories.map(cat => {
@@ -157,7 +161,11 @@ function renderHeroTrustBadges() {
         { emoji: '🌱', label: 'Herbs', sub: '5+ varieties' },
         { emoji: '🌲', label: 'Resin', sub: '5+ types' },
         { emoji: '🫒', label: 'Oils', sub: '5+ oils' },
-        { emoji: '🫘', label: 'Seeds', sub: '5+ kinds' }
+        { emoji: '🫘', label: 'Seeds', sub: '5+ kinds' },
+        { emoji: '🧼', label: 'Soap', sub: 'Natural' },
+        { emoji: '🧂', label: 'Namak', sub: 'Himalayan' },
+        { emoji: '🌶️', label: 'Masala', sub: 'Fresh Blend' },
+        { emoji: '🍄', label: 'Mushroom', sub: 'Medicinal' }
     ];
 
     container.innerHTML = badges.map(b => `
