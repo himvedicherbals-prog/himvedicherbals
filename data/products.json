@@ -427,8 +427,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -523,8 +522,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -779,8 +777,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1099,8 +1096,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1227,8 +1223,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1419,8 +1414,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1451,8 +1445,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1871,8 +1864,7 @@
       },
       "video": "/videos/bhir-maha-wild-honey.mp4",
       "forms": [
-        "Raw Resin",
-        "Powdered"
+        "Raw Resin"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1907,8 +1899,7 @@
       },
       "video": "/videos/local-honey.mp4",
       "forms": [
-        "Raw Resin",
-        "Powdered"
+        "Raw Resin"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1943,8 +1934,7 @@
       },
       "video": "/videos/pure-cow-milk.mp4",
       "forms": [
-        "Raw Resin",
-        "Powdered"
+        "Raw Resin"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -1979,8 +1969,7 @@
       },
       "video": "/videos/shilajit.mp4",
       "forms": [
-        "Raw Resin",
-        "Powdered"
+        "Raw Resin"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
@@ -2531,8 +2520,7 @@
       },
       "video": "/videos/jamalghota.mp4",
       "forms": [
-        "Whole Seeds",
-        "Ground Powder"
+        "Whole Seeds"
       ],
       "defaultForm": "whole",
       "showFormSelector": true
@@ -2599,8 +2587,7 @@
       },
       "video": "/videos/kali-konch-kauso.mp4",
       "forms": [
-        "Whole Seeds",
-        "Ground Powder"
+        "Whole Seeds"
       ],
       "defaultForm": "whole",
       "showFormSelector": true
@@ -2701,8 +2688,7 @@
       },
       "video": "/videos/malkangani.mp4",
       "forms": [
-        "Whole Seeds",
-        "Ground Powder"
+        "Whole Seeds"
       ],
       "defaultForm": "whole",
       "showFormSelector": true
@@ -2803,8 +2789,7 @@
       },
       "video": "/videos/safed-konch-kauso.mp4",
       "forms": [
-        "Whole Seeds",
-        "Ground Powder"
+        "Whole Seeds"
       ],
       "defaultForm": "whole",
       "showFormSelector": true
@@ -2905,8 +2890,7 @@
       },
       "video": "/videos/sunflower-seed.mp4",
       "forms": [
-        "Whole Seeds",
-        "Ground Powder"
+        "Whole Seeds"
       ],
       "defaultForm": "whole",
       "showFormSelector": true
@@ -3340,7 +3324,6 @@
       },
       "video": "/videos/mithi-soda.mp4",
       "forms": [
-        "Crystals",
         "Powdered"
       ],
       "defaultForm": "crystals",
@@ -3578,8 +3561,7 @@
       },
       "video": "/videos/surkh-sajjikhar.mp4",
       "forms": [
-        "Crystals",
-        "Powdered"
+        "Crystals"
       ],
       "defaultForm": "crystals",
       "showFormSelector": true
@@ -4020,8 +4002,7 @@
       },
       "video": "/videos/reishi-mushroom.mp4",
       "forms": [
-        "Dried Whole",
-        "Powdered"
+        "Dried Whole"
       ],
       "defaultForm": "dried",
       "showFormSelector": true
