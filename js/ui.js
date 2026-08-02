@@ -61,12 +61,11 @@ const UI = {
                 </div>
                 <h3 class="text-[11px] font-semibold text-emerald-900 truncate mb-0.5">${p.name}</h3>
                 <div class="flex items-baseline gap-1">
-                    <span class="text-[11px] font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
-                    <span class="text-[9px] text-emerald-600/50">/ ${p.defaultWeight}</span>
+                    <span id="mprice-${p.id}" class="text-[11px] font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
                 </div>
-                <div class="text-[9px] text-emerald-700 font-medium">${nprPrice}</div>
+                <div id="mnpr-${p.id}" class="text-[9px] text-emerald-700 font-medium">${nprPrice}</div>
                 <div class="flex items-center gap-1 mt-1" onclick="event.stopPropagation()">
-                    <select id="weight-${p.id}" class="flex-1 px-1 py-0.5 border border-emerald-200 rounded text-[9px] bg-white outline-none">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
+                    <select id="weight-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-1 py-0.5 border border-emerald-200 rounded text-[9px] bg-white outline-none">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
                     <button onclick="UI.quickAdd(${p.id}, event)" class="px-1.5 py-0.5 bg-emerald-600 text-white text-[9px] font-bold rounded hover:bg-emerald-700">Add</button>
                 </div>
             </div>
@@ -91,13 +90,13 @@ const UI = {
                         <span class="text-xs text-emerald-600/70">(${p.reviews})</span>
                     </div>
                     <div class="flex items-baseline gap-2 mb-1">
-                        <span class="text-lg font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
-                        ${p.comparePrice ? `<span class="text-sm text-emerald-600/50 line-through">$${p.comparePrice.toFixed(2)}</span>` : ''}
+                        <span id="price-${p.id}" class="text-lg font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
+                        <span id="compare-${p.id}" class="text-sm text-emerald-600/50 line-through ${p.comparePrice ? '' : 'hidden'}">${p.comparePrice ? '$' + p.comparePrice.toFixed(2) : ''}</span>
                     </div>
-                    <div class="text-sm text-emerald-700 font-medium mb-3">${nprPrice}</div>
+                    <div id="npr-${p.id}" class="text-sm text-emerald-700 font-medium mb-3">${nprPrice}</div>
                     <div class="flex items-center gap-2" onclick="event.stopPropagation()">
-                        <select id="dw-${p.id}" class="flex-1 px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
-                        ${(p.unitType === 'volume' || p.unitType === 'piece') ? '' : `
+                        <select id="dw-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
+                        ${(p.unitType === 'volume' || p.unitType === 'piece' || p.category === 'soap') ? (p.category === 'soap' ? `<span class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-emerald-50 text-emerald-700">1 Piece</span>` : '') : `
                         <select id="form-${p.id}" class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">
                             <option value="raw">Raw Form</option>
                             <option value="powder">Powder Form</option>
@@ -120,9 +119,15 @@ const UI = {
         const weight = selectEl ? selectEl.value : p.defaultWeight;
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
-        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece');
-        const formEl = document.getElementById(`form-${productId}`);
-        const form = hasForm ? ((formEl && formEl.value === 'powder') ? 'Powder Form' : 'Raw Form') : '';
+        const isSoap = (p.category === 'soap');
+        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece' || isSoap);
+        let form = '';
+        if (isSoap) {
+            form = '1 Piece';
+        } else if (hasForm) {
+            const formEl = document.getElementById(`form-${productId}`);
+            form = ((formEl && formEl.value === 'powder') ? 'Powder Form' : 'Raw Form');
+        }
         const msg = Cart.add(p, weight, form, price);
         Toast.show(msg);
     },
@@ -194,10 +199,16 @@ const UI = {
         const modalFormEl = document.getElementById('modalForm');
         const modalFormField = document.getElementById('modalFormField');
         const modalWeightField = document.getElementById('modalWeightField');
-        const hideForm = (p.unitType === 'volume' || p.unitType === 'piece');
+        const hideForm = (p.unitType === 'volume' || p.unitType === 'piece' || p.category === 'soap');
+        // For soap, show "1 Piece" badge instead of form selector
+        const isSoap = (p.category === 'soap');
+        const soapBadgeEl = document.getElementById('modalSoapBadge');
+        if (soapBadgeEl) {
+            soapBadgeEl.classList.toggle('hidden', !isSoap);
+        }
         modalFormEl.value = 'raw';
-        modalFormField.classList.toggle('hidden', hideForm);
-        modalWeightField.classList.toggle('col-span-2', hideForm);
+        modalFormField.classList.toggle('hidden', hideForm || isSoap);
+        modalWeightField.classList.toggle('col-span-2', hideForm || isSoap);
 
         // Category badge
         const catBadge = document.getElementById('modalCategoryBadge');
@@ -252,12 +263,54 @@ const UI = {
             `Based on exchange rate: 1 USD = ${SiteConfig.exchangeRate} NPR`;
     },
 
+    // Update price on product card when weight changes
+    updateCardPrice(productId) {
+        const p = AppData.getProductById(productId);
+        if (!p) return;
+        
+        const isMobile = window.innerWidth < 640;
+        const selectEl = document.getElementById(isMobile ? `weight-${productId}` : `dw-${productId}`);
+        const weight = selectEl ? selectEl.value : p.defaultWeight;
+        const multiplier = p.priceMultiplier[weight] || 1;
+        const newPrice = +(p.price * multiplier).toFixed(2);
+        
+        // Update desktop card price
+        const priceEl = document.getElementById(`price-${productId}`);
+        if (priceEl) priceEl.textContent = '$' + newPrice.toFixed(2);
+        
+        // Update compare price (desktop)
+        const compareEl = document.getElementById(`compare-${productId}`);
+        if (compareEl && p.comparePrice) {
+            const cmpPrice = +(p.comparePrice * multiplier).toFixed(2);
+            compareEl.textContent = '$' + cmpPrice.toFixed(2);
+            compareEl.classList.remove('hidden');
+        }
+        
+        // Update NPR price (desktop)
+        const nprEl = document.getElementById(`npr-${productId}`);
+        if (nprEl) nprEl.textContent = AppData.formatNPR(newPrice);
+        
+        // Update mobile card price
+        const mpriceEl = document.getElementById(`mprice-${productId}`);
+        if (mpriceEl) mpriceEl.textContent = '$' + newPrice.toFixed(2);
+        
+        // Update NPR price (mobile)
+        const mnprEl = document.getElementById(`mnpr-${productId}`);
+        if (mnprEl) mnprEl.textContent = AppData.formatNPR(newPrice);
+    },
+
     addFromModal() {
         if (!this.currentModalProduct) return;
         const p = this.currentModalProduct;
         const weight = document.getElementById('modalWeight').value;
-        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece');
-        const form = hasForm ? (document.getElementById('modalForm').value === 'powder' ? 'Powder Form' : 'Raw Form') : '';
+        const isSoap = (p.category === 'soap');
+        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece' || isSoap);
+        let form = '';
+        if (isSoap) {
+            form = '1 Piece';
+        } else if (hasForm) {
+            form = (document.getElementById('modalForm').value === 'powder') ? 'Powder Form' : 'Raw Form';
+        }
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
         const msg = Cart.add(p, weight, form, price);
