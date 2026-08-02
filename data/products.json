@@ -106,7 +106,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 2,
@@ -132,7 +138,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 3,
@@ -158,7 +170,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 4,
@@ -184,7 +202,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 5,
@@ -210,7 +234,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 6,
@@ -236,7 +266,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 7,
@@ -262,7 +298,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 8,
@@ -288,7 +330,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 9,
@@ -314,7 +362,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 10,
@@ -340,7 +394,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 11,
@@ -366,7 +426,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 12,
@@ -392,7 +458,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 13,
@@ -418,7 +490,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 14,
@@ -444,7 +522,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 15,
@@ -470,7 +554,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 16,
@@ -496,7 +586,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 17,
@@ -522,7 +618,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 18,
@@ -548,7 +650,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 19,
@@ -574,7 +682,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 20,
@@ -600,7 +714,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 21,
@@ -626,7 +746,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 22,
@@ -652,7 +778,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 23,
@@ -678,7 +810,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 24,
@@ -704,7 +842,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 25,
@@ -730,7 +874,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 26,
@@ -756,7 +906,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 27,
@@ -782,7 +938,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 28,
@@ -808,7 +970,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 29,
@@ -834,7 +1002,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 30,
@@ -860,7 +1034,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 31,
@@ -886,7 +1066,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 32,
@@ -912,7 +1098,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 33,
@@ -938,7 +1130,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 34,
@@ -964,7 +1162,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 35,
@@ -990,7 +1194,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 36,
@@ -1016,7 +1226,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 37,
@@ -1042,7 +1258,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 38,
@@ -1068,7 +1290,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 39,
@@ -1094,7 +1322,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 40,
@@ -1120,7 +1354,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 41,
@@ -1146,7 +1386,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 42,
@@ -1172,7 +1418,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 43,
@@ -1198,7 +1450,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 44,
@@ -1224,7 +1482,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 45,
@@ -1250,7 +1514,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 46,
@@ -1276,7 +1546,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 47,
@@ -1302,7 +1578,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 48,
@@ -1328,7 +1610,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 49,
@@ -1354,7 +1642,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 50,
@@ -1380,7 +1674,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 51,
@@ -1406,7 +1706,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 52,
@@ -1432,7 +1738,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 53,
@@ -1458,7 +1770,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 54,
@@ -1484,7 +1802,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 55,
@@ -1510,7 +1834,13 @@
         "500g": 0.6,
         "1 Kg": 1
       },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+      "video": "/videos/organic-tulsi-holy-basil.mp4",
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 56,
@@ -1540,7 +1870,13 @@
         "250g": 2.2,
         "500g": 4.0
       },
-      "video": "/videos/bhir-maha-wild-honey.mp4"
+      "video": "/videos/bhir-maha-wild-honey.mp4",
+      "forms": [
+        "Raw Resin",
+        "Powdered"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 57,
@@ -1570,7 +1906,13 @@
         "250g": 2.2,
         "500g": 4.0
       },
-      "video": "/videos/local-honey.mp4"
+      "video": "/videos/local-honey.mp4",
+      "forms": [
+        "Raw Resin",
+        "Powdered"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 58,
@@ -1600,7 +1942,13 @@
         "250g": 2.2,
         "500g": 4.0
       },
-      "video": "/videos/pure-cow-milk.mp4"
+      "video": "/videos/pure-cow-milk.mp4",
+      "forms": [
+        "Raw Resin",
+        "Powdered"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 59,
@@ -1630,7 +1978,13 @@
         "250g": 2.2,
         "500g": 4.0
       },
-      "video": "/videos/shilajit.mp4"
+      "video": "/videos/shilajit.mp4",
+      "forms": [
+        "Raw Resin",
+        "Powdered"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true
     },
     {
       "id": 60,
@@ -1660,7 +2014,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/amrit-dhara.mp4"
+      "video": "/videos/amrit-dhara.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 61,
@@ -1690,7 +2049,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/bhuteko-mustard-oil.mp4"
+      "video": "/videos/bhuteko-mustard-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 62,
@@ -1720,7 +2084,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/coconut-oil.mp4"
+      "video": "/videos/coconut-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 63,
@@ -1750,7 +2119,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/infuse-aloevera-oil.mp4"
+      "video": "/videos/infuse-aloevera-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 64,
@@ -1780,7 +2154,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/infused-amla-oil.mp4"
+      "video": "/videos/infused-amla-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 65,
@@ -1810,7 +2189,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/mustard-oil.mp4"
+      "video": "/videos/mustard-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 66,
@@ -1840,7 +2224,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/timur-oil.mp4"
+      "video": "/videos/timur-oil.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 67,
@@ -1870,7 +2259,12 @@
         "1 Ltr": 3.2,
         "5 Ltr": 14.0
       },
-      "video": "/videos/titepati-oil-Artemisia.mp4"
+      "video": "/videos/titepati-oil-Artemisia.mp4",
+      "forms": [
+        "Liquid"
+      ],
+      "defaultForm": "liquid",
+      "showFormSelector": false
     },
     {
       "id": 68,
@@ -1898,7 +2292,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/basil-seed.mp4"
+      "video": "/videos/basil-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 69,
@@ -1926,7 +2326,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/black-sesami-kala-til.mp4"
+      "video": "/videos/black-sesami-kala-til.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 70,
@@ -1954,7 +2360,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/chia-seed.mp4"
+      "video": "/videos/chia-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 71,
@@ -1982,7 +2394,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/dhatura-seed.mp4"
+      "video": "/videos/dhatura-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 72,
@@ -2010,7 +2428,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/fennel-seed.mp4"
+      "video": "/videos/fennel-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 73,
@@ -2038,7 +2462,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/flax-seed.mp4"
+      "video": "/videos/flax-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 74,
@@ -2066,7 +2496,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/harmal.mp4"
+      "video": "/videos/harmal.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 75,
@@ -2094,7 +2530,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/jamalghota.mp4"
+      "video": "/videos/jamalghota.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 76,
@@ -2122,7 +2564,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/jamun-guthali.mp4"
+      "video": "/videos/jamun-guthali.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 77,
@@ -2150,7 +2598,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/kali-konch-kauso.mp4"
+      "video": "/videos/kali-konch-kauso.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 78,
@@ -2178,7 +2632,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/kalonji.mp4"
+      "video": "/videos/kalonji.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 79,
@@ -2206,7 +2666,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/khaskhas_1024x1024.mp4"
+      "video": "/videos/khaskhas_1024x1024.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 80,
@@ -2234,7 +2700,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/malkangani.mp4"
+      "video": "/videos/malkangani.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 81,
@@ -2262,7 +2734,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/pumpkin-seed.mp4"
+      "video": "/videos/pumpkin-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 82,
@@ -2290,7 +2768,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/quinoa.mp4"
+      "video": "/videos/quinoa.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 83,
@@ -2318,7 +2802,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/safed-konch-kauso.mp4"
+      "video": "/videos/safed-konch-kauso.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 84,
@@ -2346,7 +2836,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/satynashi-seed.mp4"
+      "video": "/videos/satynashi-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 85,
@@ -2374,7 +2870,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/siris-seed.mp4"
+      "video": "/videos/siris-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 86,
@@ -2402,7 +2904,13 @@
         "500g": 1.8,
         "1 Kg": 3.2
       },
-      "video": "/videos/sunflower-seed.mp4"
+      "video": "/videos/sunflower-seed.mp4",
+      "forms": [
+        "Whole Seeds",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 87,
@@ -2430,7 +2938,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/aloevera-soap.mp4"
+      "video": "/videos/aloevera-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 88,
@@ -2458,7 +2971,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/gomutra-soap.mp4"
+      "video": "/videos/gomutra-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 89,
@@ -2486,7 +3004,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/haldi-soap.mp4"
+      "video": "/videos/haldi-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 90,
@@ -2514,7 +3037,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/mixed-hair-soap.mp4"
+      "video": "/videos/mixed-hair-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 91,
@@ -2542,7 +3070,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/mixed-skin-soap.mp4"
+      "video": "/videos/mixed-skin-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 92,
@@ -2570,7 +3103,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/neem-soap.mp4"
+      "video": "/videos/neem-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 93,
@@ -2598,7 +3136,12 @@
         "125g": 1.2,
         "150g": 1.4
       },
-      "video": "/videos/tetepati-soap.mp4"
+      "video": "/videos/tetepati-soap.mp4",
+      "forms": [
+        "1 Piece"
+      ],
+      "defaultForm": "piece",
+      "showFormSelector": false
     },
     {
       "id": 94,
@@ -2626,7 +3169,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/camphor.mp4"
+      "video": "/videos/camphor.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 95,
@@ -2654,7 +3203,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/jawakhar.mp4"
+      "video": "/videos/jawakhar.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 96,
@@ -2682,7 +3237,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/kala-namak.mp4"
+      "video": "/videos/kala-namak.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 97,
@@ -2710,7 +3271,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/kala-sajji-khar.mp4"
+      "video": "/videos/kala-sajji-khar.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 98,
@@ -2738,7 +3305,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/kalmi-shora.mp4"
+      "video": "/videos/kalmi-shora.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 99,
@@ -2766,7 +3339,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/mithi-soda.mp4"
+      "video": "/videos/mithi-soda.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 100,
@@ -2794,7 +3373,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/nausadar-fali.mp4"
+      "video": "/videos/nausadar-fali.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 101,
@@ -2822,7 +3407,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/phatkri.mp4"
+      "video": "/videos/phatkri.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 102,
@@ -2850,7 +3441,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/red-phatkri.mp4"
+      "video": "/videos/red-phatkri.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 103,
@@ -2878,7 +3475,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/safed-sajji-khar.mp4"
+      "video": "/videos/safed-sajji-khar.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 104,
@@ -2906,7 +3509,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/samudri-namak.mp4"
+      "video": "/videos/samudri-namak.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 105,
@@ -2934,7 +3543,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/sedha-namak.mp4"
+      "video": "/videos/sedha-namak.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 106,
@@ -2962,7 +3577,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/surkh-sajjikhar.mp4"
+      "video": "/videos/surkh-sajjikhar.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 107,
@@ -2990,7 +3611,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/thikri-nausadar.mp4"
+      "video": "/videos/thikri-nausadar.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 108,
@@ -3018,7 +3645,13 @@
         "1 Kg": 1.85,
         "5 Kg": 8.0
       },
-      "video": "/videos/unbujh-chuna.mp4"
+      "video": "/videos/unbujh-chuna.mp4",
+      "forms": [
+        "Crystals",
+        "Powdered"
+      ],
+      "defaultForm": "crystals",
+      "showFormSelector": true
     },
     {
       "id": 109,
@@ -3046,7 +3679,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/dalchini-high-grade.mp4"
+      "video": "/videos/dalchini-high-grade.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 110,
@@ -3074,7 +3713,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/dalchini-low-grade.mp4"
+      "video": "/videos/dalchini-low-grade.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 111,
@@ -3102,7 +3747,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/jaifal.mp4"
+      "video": "/videos/jaifal.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 112,
@@ -3130,7 +3781,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/kali-mirch.mp4"
+      "video": "/videos/kali-mirch.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 113,
@@ -3158,7 +3815,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/large-cardamom.mp4"
+      "video": "/videos/large-cardamom.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 114,
@@ -3186,7 +3849,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/lwang-clove.mp4"
+      "video": "/videos/lwang-clove.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 115,
@@ -3214,7 +3883,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/pipli.mp4"
+      "video": "/videos/pipli.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 116,
@@ -3242,7 +3917,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/star-anise.mp4"
+      "video": "/videos/star-anise.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 117,
@@ -3270,7 +3951,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/sukumel-green-cardamom.mp4"
+      "video": "/videos/sukumel-green-cardamom.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 118,
@@ -3298,7 +3985,13 @@
         "500g": 1.75,
         "1 Kg": 3.2
       },
-      "video": "/videos/tejpatta.mp4"
+      "video": "/videos/tejpatta.mp4",
+      "forms": [
+        "Whole Spice",
+        "Ground Powder"
+      ],
+      "defaultForm": "whole",
+      "showFormSelector": true
     },
     {
       "id": 119,
@@ -3326,35 +4019,13 @@
         "250g": 2.2,
         "500g": 4.0
       },
-      "video": "/videos/reishi-mushroom.mp4"
-    },
-    {
-      "id": 120,
-      "name": "Hemp Seeds",
-      "emoji": "🫘",
-      "image": "hemp-seeds.jpg",
-      "category": "seeds",
-      "description": "Organic Hemp Seeds carefully selected for quality and germination. Used in cooking, sprouting, and traditional remedies. High nutritional value with essential vitamins and minerals.",
-      "price": 11.99,
-      "comparePrice": 14.87,
-      "rating": 4.5,
-      "reviews": 367,
-      "defaultWeight": "250g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": [
-        "100g",
-        "250g",
-        "500g",
-        "1 Kg"
+      "video": "/videos/reishi-mushroom.mp4",
+      "forms": [
+        "Dried Whole",
+        "Powdered"
       ],
-      "priceMultiplier": {
-        "100g": 0.45,
-        "250g": 1,
-        "500g": 1.8,
-        "1 Kg": 3.2
-      },
-      "video": "/videos/hemp-seeds.mp4"
+      "defaultForm": "dried",
+      "showFormSelector": true
     }
   ],
   "testimonials": [

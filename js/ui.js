@@ -96,11 +96,7 @@ const UI = {
                     <div id="npr-${p.id}" class="text-sm text-emerald-700 font-medium mb-3">${nprPrice}</div>
                     <div class="flex items-center gap-2" onclick="event.stopPropagation()">
                         <select id="dw-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
-                        ${(p.unitType === 'volume' || p.unitType === 'piece' || p.category === 'soap') ? (p.category === 'soap' ? `<span class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-emerald-50 text-emerald-700">1 Piece</span>` : '') : `
-                        <select id="form-${p.id}" class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">
-                            <option value="raw">Raw Form</option>
-                            <option value="powder">Powder Form</option>
-                        </select>`}
+                        ${(() => { const forms = p.forms || []; const showSelector = p.showFormSelector !== false; if (!showSelector && forms.length === 1) { return `<span class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-emerald-50 text-emerald-700">${forms[0]}</span>`; } else if (showSelector && forms.length > 1) { return `<select id="form-${p.id}" class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${forms.map((f, i) => `<option value="${p.defaultForm || 'raw'}" ${i === 0 ? 'selected' : ''}>${f}</option>`).join('')}</select>`; } return ''; })()}
                         <button onclick="UI.quickAdd(${p.id}, event)" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-semibold rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-1">
                             <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
                         </button>
@@ -119,15 +115,17 @@ const UI = {
         const weight = selectEl ? selectEl.value : p.defaultWeight;
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
-        const isSoap = (p.category === 'soap');
-        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece' || isSoap);
+        
+        // Get form from product data or selector
+        const forms = p.forms || [];
         let form = '';
-        if (isSoap) {
-            form = '1 Piece';
-        } else if (hasForm) {
+        if (forms.length === 1) {
+            form = forms[0]; // Single form (e.g., "1 Piece", "Liquid")
+        } else if (forms.length > 1 && p.showFormSelector !== false) {
             const formEl = document.getElementById(`form-${productId}`);
-            form = ((formEl && formEl.value === 'powder') ? 'Powder Form' : 'Raw Form');
+            form = formEl ? formEl.options[formEl.selectedIndex].text : forms[0];
         }
+        
         const msg = Cart.add(p, weight, form, price);
         Toast.show(msg);
     },
@@ -196,19 +194,41 @@ const UI = {
         ws.innerHTML = p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('');
 
         document.getElementById('modalDescription').textContent = p.description;
+        
+        // Form select - use forms from product JSON data
         const modalFormEl = document.getElementById('modalForm');
         const modalFormField = document.getElementById('modalFormField');
         const modalWeightField = document.getElementById('modalWeightField');
-        const hideForm = (p.unitType === 'volume' || p.unitType === 'piece' || p.category === 'soap');
-        // For soap, show "1 Piece" badge instead of form selector
-        const isSoap = (p.category === 'soap');
-        const soapBadgeEl = document.getElementById('modalSoapBadge');
-        if (soapBadgeEl) {
-            soapBadgeEl.classList.toggle('hidden', !isSoap);
+        const modalSoapBadgeEl = document.getElementById('modalSoapBadge');
+        
+        const forms = p.forms || [];
+        const showSelector = p.showFormSelector !== false && forms.length > 1;
+        const showBadge = !showSelector && forms.length === 1;
+        
+        // Update form dropdown options from product data
+        if (forms.length > 1) {
+            modalFormEl.innerHTML = forms.map((f, i) => 
+                `<option value="${p.defaultForm || 'raw'}" ${i === 0 ? 'selected' : ''}>${f}</option>`
+            ).join('');
+            modalFormField.classList.remove('hidden');
+        } else {
+            modalFormField.classList.add('hidden');
         }
-        modalFormEl.value = 'raw';
-        modalFormField.classList.toggle('hidden', hideForm || isSoap);
-        modalWeightField.classList.toggle('col-span-2', hideForm || isSoap);
+        
+        // Show/hide badge for single-form products (soap, oils)
+        if (modalSoapBadgeEl) {
+            if (showBadge) {
+                modalSoapBadgeEl.innerHTML = `
+                    <label class="text-xs font-medium text-emerald-700 mb-1 block">Form</label>
+                    <div class="w-full px-3 py-2 border border-emerald-200 rounded-lg text-sm bg-emerald-50 text-emerald-700 text-center font-medium">${forms[0]}</div>
+                `;
+                modalSoapBadgeEl.classList.remove('hidden');
+            } else {
+                modalSoapBadgeEl.classList.add('hidden');
+            }
+        }
+        
+        modalWeightField.classList.toggle('col-span-2', !showSelector);
 
         // Category badge
         const catBadge = document.getElementById('modalCategoryBadge');
@@ -303,14 +323,17 @@ const UI = {
         if (!this.currentModalProduct) return;
         const p = this.currentModalProduct;
         const weight = document.getElementById('modalWeight').value;
-        const isSoap = (p.category === 'soap');
-        const hasForm = !(p.unitType === 'volume' || p.unitType === 'piece' || isSoap);
+        
+        // Get form from product data
+        const forms = p.forms || [];
         let form = '';
-        if (isSoap) {
-            form = '1 Piece';
-        } else if (hasForm) {
-            form = (document.getElementById('modalForm').value === 'powder') ? 'Powder Form' : 'Raw Form';
+        if (forms.length === 1) {
+            form = forms[0]; // Single form like "1 Piece", "Liquid"
+        } else if (forms.length > 1) {
+            const formEl = document.getElementById('modalForm');
+            form = formEl ? formEl.options[formEl.selectedIndex].text : forms[0];
         }
+        
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
         const msg = Cart.add(p, weight, form, price);
