@@ -81,7 +81,7 @@
       "defaultWeight": "1 Kg",
       "unitType": "weight",
       "featured": true,
-      "weights": ["250g", "500g", "1 Kg", "2 Kg", "5 Kg"],
+      "weights": ["250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "250g": 0.3,
         "500g": 0.6,
@@ -105,7 +105,7 @@
       "defaultWeight": "1 Kg",
       "unitType": "weight",
       "featured": false,
-      "weights": ["250g", "500g", "1 Kg", "2 Kg", "5 Kg"],
+      "weights": ["250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "250g": 0.3,
         "500g": 0.6,
@@ -129,7 +129,7 @@
       "defaultWeight": "1 Kg",
       "unitType": "weight",
       "featured": false,
-      "weights": ["250g", "500g", "1 Kg", "2 Kg", "5 Kg"],
+      "weights": ["250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "250g": 0.3,
         "500g": 0.6,
@@ -153,7 +153,7 @@
       "defaultWeight": "1 Kg",
       "unitType": "weight",
       "featured": true,
-      "weights": ["250g", "500g", "1 Kg", "2 Kg", "5 Kg"],
+      "weights": ["250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "250g": 0.3,
         "500g": 0.6,
