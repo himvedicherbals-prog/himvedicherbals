@@ -108,8 +108,7 @@
       },
       "video": "/videos/organic-tulsi-holy-basil.mp4",
       "forms": [
-        "Raw Form",
-        "Powder Form"
+        "Raw Form"
       ],
       "defaultForm": "raw",
       "showFormSelector": true
