@@ -4006,6 +4006,62 @@
       ],
       "defaultForm": "dried",
       "showFormSelector": true
+    },
+    {
+      "id": 120,
+      "name": "Hemp Seeds",
+      "emoji": "🫘",
+      "image": "hemp-seeds.jpg",
+      "category": "seeds",
+      "description": "Organic Hemp Seeds carefully selected for quality and germination. Used in cooking, sprouting, and traditional remedies. High nutritional value with essential vitamins and minerals.",
+      "price": 11.99,
+      "comparePrice": 14.87,
+      "rating": 4.7,
+      "reviews": 156,
+      "defaultWeight": "250g",
+      "unitType": "weight",
+      "featured": false,
+      "weights": [
+        "100g",
+        "250g",
+        "500g",
+        "1 Kg"
+      ],
+      "priceMultiplier": {
+        "100g": 0.45,
+        "250g": 1,
+        "500g": 1.8,
+        "1 Kg": 3.2
+      },
+      "video": "/videos/hemp-seeds.mp4"
+    },
+    {
+      "id": 121,
+      "name": "Silam1",
+      "emoji": "🫘",
+      "image": "silam1.jpeg",
+      "category": "seeds",
+      "description": "Organic Silam1 carefully selected for quality and germination. Used in cooking, sprouting, and traditional remedies. High nutritional value with essential vitamins and minerals.",
+      "price": 13.99,
+      "comparePrice": 17.9,
+      "rating": 4.6,
+      "reviews": 156,
+      "defaultWeight": "250g",
+      "unitType": "weight",
+      "featured": false,
+      "weights": [
+        "100g",
+        "250g",
+        "500g",
+        "1 Kg"
+      ],
+      "priceMultiplier": {
+        "100g": 0.45,
+        "250g": 1,
+        "500g": 1.8,
+        "1 Kg": 3.2
+      },
+      "video": "/videos/silam1.mp4"
     }
   ],
   "testimonials": [
