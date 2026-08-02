@@ -84,567 +84,1436 @@
 
   "products": [
     {
-      "id": 1,
-      "name": "Organic Tulsi (Holy Basil)",
-      "emoji": "🌿",
-      "image": "organic-tulsi-holy-basil.jpg",
-      "category": "herbs",
-      "description": "Farm-fresh Rama and Krishna tulsi varieties, shade-dried to preserve essential oils. Known as the Queen of Herbs for its adaptogenic and immune-boosting properties.",
-      "price": 12.99,
-      "comparePrice": 16.99,
-      "rating": 4.9,
-      "reviews": 234,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "250g": 0.3,
-        "500g": 0.6,
-        "1 Kg": 1,
-        "2 Kg": 1.9,
-        "5 Kg": 4.5
-      },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+    "id": 1,
+    "name": "Amaltas",
+    "emoji": "🌿",
+    "image": "amaltas.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 2,
-      "name": "Ashwagandha Root Powder",
-      "emoji": "🫚",
-      "image": "ashwagandha-root-powder.jpg",
-      "category": "herbs",
-      "description": "Premium KSM-66 ashwagandha root powder, organically grown and lab-verified for withanolide content. Supports stress relief, better sleep, and enhanced physical performance.",
-      "price": 18.99,
-      "comparePrice": null,
-      "rating": 4.8,
-      "reviews": 178,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "250g": 0.3,
-        "500g": 0.6,
-        "1 Kg": 1,
-        "2 Kg": 1.9,
-        "5 Kg": 4.5
-      },
-      "video": "/videos/ashwagandha-root-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 2,
+    "name": "Amla",
+    "emoji": "🌿",
+    "image": "amla.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 3,
-      "name": "Turmeric Root Powder",
-      "emoji": "🟡",
-      "image": "turmeric-root-powder.jpg",
-      "category": "herbs",
-      "description": "High-curcumin turmeric powder from Lakadong variety, containing 7-12% curcumin. Anti-inflammatory powerhouse for cooking, golden milk, and traditional remedies.",
-      "price": 14.99,
-      "comparePrice": 19.99,
-      "rating": 4.7,
-      "reviews": 312,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "250g": 0.3,
-        "500g": 0.6,
-        "1 Kg": 1,
-        "2 Kg": 1.9,
-        "5 Kg": 4.5
-      },
-      "video": "/videos/turmeric-root-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 3,
+    "name": "Apamarg Chirchita",
+    "emoji": "🌿",
+    "image": "apamarg-chirchita.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 4,
-      "name": "Dried Lemongrass",
-      "emoji": "🌾",
-      "image": "dried-lemongrass.jpg",
-      "category": "herbs",
-      "description": "Aromatic lemongrass stalks, sun-dried and cut for easy brewing. Makes a refreshing tea that aids digestion, relieves anxiety, and naturally repels insects.",
-      "price": 9.99,
-      "comparePrice": null,
-      "rating": 4.5,
-      "reviews": 67,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "250g": 0.3,
-        "500g": 0.6,
-        "1 Kg": 1,
-        "2 Kg": 1.9,
-        "5 Kg": 4.5
-      },
-      "video": "/videos/dried-lemongrass.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 4,
+    "name": "Arjuna Chal",
+    "emoji": "🌿",
+    "image": "arjuna-chal.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 5,
-      "name": "Moringa Leaf Powder",
-      "emoji": "🍃",
-      "image": "moringa-leaf-powder.jpg",
-      "category": "herbs",
-      "description": "Nutrient-dense moringa oleifera leaves, shade-dried and finely ground. Contains 92 nutrients, 46 antioxidants, and all essential amino acids. A true superfood for smoothies and meals.",
-      "price": 16.99,
-      "comparePrice": 22.99,
-      "rating": 4.6,
-      "reviews": 121,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "250g": 0.3,
-        "500g": 0.6,
-        "1 Kg": 1,
-        "2 Kg": 1.9,
-        "5 Kg": 4.5
-      },
-      "video": "/videos/moringa-leaf-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 5,
+    "name": "Ashwaganda",
+    "emoji": "🌿",
+    "image": "ashwaganda.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 6,
-      "name": "Pure Frankincense Resin",
-      "emoji": "✨",
-      "image": "pure-gau-balm.jpg",
-      "category": "resin",
-      "description": "Premium Boswellia sacra resin hand-harvested from ancient trees in the Himalayan region. Ideal for meditation, aromatherapy, and traditional Ayurvedic preparations. Rich in boswellic acids.",
-      "price": 24.99,
-      "comparePrice": 34.99,
-      "rating": 4.8,
-      "reviews": 127,
-      "defaultWeight": "1 Kg",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.15,
-        "250g": 0.35,
-        "500g": 0.65,
-        "1 Kg": 1
-      },
-      "video": "/videos/pure-gau-balm.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 6,
+    "name": "Asuro",
+    "emoji": "🌿",
+    "image": "asuro.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 7,
-      "name": "Benzoin Sumatra Resin",
-      "emoji": "🔥",
-      "image": "gau-healing-oil.jpg",
-      "category": "resin",
-      "description": "Aromatic Styrax benzoin resin with sweet vanilla-like fragrance. Used in incense making, perfumery, and as a natural preservative. Sustainably wild-crafted from Indonesian forests.",
-      "price": 18.99,
-      "comparePrice": null,
-      "rating": 4.6,
-      "reviews": 89,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.22,
-        "250g": 0.48,
-        "500g": 1,
-        "1 Kg": 1.85
-      },
-      "video": "/videos/gau-healing-oil.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 7,
+    "name": "Barro",
+    "emoji": "🌿",
+    "image": "barro.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 8,
-      "name": "Myrrh Gum Resin",
-      "emoji": "🌑",
-      "image": "gau-face-cream.jpg",
-      "category": "resin",
-      "description": "Premium Commiphora myrrha resin with earthy, balsamic aroma. Traditionally used for oral health, meditation, and skin care formulations. Ethically sourced from African collectors.",
-      "price": 28.99,
-      "comparePrice": 38.99,
-      "rating": 4.7,
-      "reviews": 156,
-      "defaultWeight": "250g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["50g", "100g", "250g", "500g"],
-      "priceMultiplier": {
-        "50g": 0.2,
-        "100g": 0.38,
-        "250g": 1,
-        "500g": 1.8
-      },
-      "video": "/videos/gau-face-cream.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 8,
+    "name": "Barun Chal",
+    "emoji": "🌿",
+    "image": "barun-chal.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 9,
-      "name": "Copal Amber Resin",
-      "emoji": "💛",
-      "image": "gau-herbal-soap.jpg",
-      "category": "resin",
-      "description": "Young amber copal resin from Bursera trees with fresh pine-citrus scent. Perfect for energy cleansing ceremonies and natural varnish production. Clean burning with minimal smoke.",
-      "price": 15.99,
-      "comparePrice": 21.99,
-      "rating": 4.5,
-      "reviews": 73,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.25,
-        "250g": 0.5,
-        "500g": 1,
-        "1 Kg": 1.75
-      },
-      "video": "/videos/gau-herbal-soap.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 9,
+    "name": "Belgiri",
+    "emoji": "🌿",
+    "image": "belgiri.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 10,
-      "name": "Dragon's Blood Resin",
-      "emoji": "❤️‍🔥",
-      "image": "gau-capsules-60ct.jpg",
-      "category": "resin",
-      "description": "Vibrant red Daemonorops draco resin prized for its deep crimson color. Used in ritual magic, as a natural dye, and in traditional Chinese medicine for wound healing and blood circulation.",
-      "price": 32.99,
-      "comparePrice": null,
-      "rating": 4.9,
-      "reviews": 94,
-      "defaultWeight": "100g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["25g", "50g", "100g", "250g"],
-      "priceMultiplier": {
-        "25g": 0.3,
-        "50g": 0.55,
-        "100g": 1,
-        "250g": 2.2
-      },
-      "video": "/videos/gau-capsules-60ct.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 10,
+    "name": "Bharmi",
+    "emoji": "🌿",
+    "image": "bharmi.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 11,
-      "name": "Neem Oil (Cold Pressed)",
-      "emoji": "🌿",
-      "image": "bioboost-root-enhancer.jpg",
-      "category": "oils",
-      "description": "Pure cold-pressed neem oil rich in azadirachtin. Natural pesticide, fungicide, and miticide for organic gardening. Also excellent for skin conditions like acne and eczema.",
-      "price": 14.99,
-      "comparePrice": 19.99,
-      "rating": 4.7,
-      "reviews": 198,
-      "defaultWeight": "500ml",
-      "unitType": "volume",
-      "featured": true,
-      "weights": ["100ml", "250ml", "500ml", "1 Ltr"],
-      "priceMultiplier": {
-        "100ml": 0.25,
-        "250ml": 0.5,
-        "500ml": 1,
-        "1 Ltr": 1.8,
-        "5 Ltr": 7.5
-      },
-      "video": "/videos/bioboost-root-enhancer.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 11,
+    "name": "Bhilawa",
+    "emoji": "🌿",
+    "image": "bhilawa.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 12,
-      "name": "Sesame Seed Oil",
-      "emoji": "🥜",
-      "image": "phosphosol-microbial-mix.jpg",
-      "category": "oils",
-      "description": "Traditional wood-pressed sesame oil (gingelly oil) with nutty aroma. Rich in vitamin E and antioxidants. Ideal for cooking, oil pulling therapy, and Ayurvedic body massage (abhyanga).",
-      "price": 12.99,
-      "comparePrice": null,
-      "rating": 4.8,
-      "reviews": 267,
-      "defaultWeight": "1 Ltr",
-      "unitType": "volume",
-      "featured": true,
-      "weights": ["250ml", "500ml", "1 Ltr"],
-      "priceMultiplier": {
-        "250ml": 0.3,
-        "500ml": 0.58,
-        "1 Ltr": 1,
-        "2 Ltr": 1.85,
-        "5 Ltr": 4.2
-      },
-      "video": "/videos/phosphosol-microbial-mix.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 12,
+    "name": "Bhojo",
+    "emoji": "🌿",
+    "image": "bhojo.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 13,
-      "name": "Coconut Oil (Virgin)",
-      "emoji": "🥥",
-      "image": "vermirich-compost-plus.jpg",
-      "category": "oils",
-      "description": "Extra virgin coconut oil from fresh kernel cold-pressing. MCT-rich for energy and metabolism support. Multipurpose for cooking, hair conditioning, skin moisturizing, and oil pulling.",
-      "price": 10.99,
-      "comparePrice": 14.99,
-      "rating": 4.6,
-      "reviews": 345,
-      "defaultWeight": "500ml",
-      "unitType": "volume",
-      "featured": false,
-      "weights": ["200ml", "500ml", "1 Ltr"],
-      "priceMultiplier": {
-        "200ml": 0.28,
-        "500ml": 1,
-        "1 Ltr": 1.75,
-        "2 Ltr": 3.3,
-        "5 Ltr": 7.5
-      },
-      "video": "/videos/vermirich-compost-plus.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 13,
+    "name": "Bringraj",
+    "emoji": "🌿",
+    "image": "bringraj.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 14,
-      "name": "Castor Oil (Hexane Free)",
-      "emoji": "💧",
-      "image": "mycorrhizal-inoculant.jpg",
-      "category": "oils",
-      "description": "Premium hexane-free castor oil extracted through traditional pressing. Promotes hair growth, treats constipation, and reduces inflammation. Excellent base for herbal infusions and balms.",
-      "price": 8.99,
-      "comparePrice": 11.99,
-      "rating": 4.5,
-      "reviews": 189,
-      "defaultWeight": "250ml",
-      "unitType": "volume",
-      "featured": false,
-      "weights": ["100ml", "250ml", "500ml", "1 Ltr"],
-      "priceMultiplier": {
-        "100ml": 0.4,
-        "250ml": 1,
-        "500ml": 1.7,
-        "1 Ltr": 3.0
-      },
-      "video": "/videos/mycorrhizal-inoculant.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 14,
+    "name": "Cheer Pine Behroza",
+    "emoji": "🌿",
+    "image": "cheer-pine-behroza.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 15,
-      "name": "Almond Oil (Sweet)",
-      "emoji": "🌰",
-      "image": "biofert-all-purpose-blend.jpg",
-      "category": "oils",
-      "description": "Cold-pressed sweet almond oil rich in omega fatty acids and vitamin E. Lightweight carrier oil perfect for aromatherapy blends, massage, and as a gentle makeup remover.",
-      "price": 16.99,
-      "comparePrice": 22.99,
-      "rating": 4.8,
-      "reviews": 156,
-      "defaultWeight": "500ml",
-      "unitType": "volume",
-      "featured": true,
-      "weights": ["100ml", "250ml", "500ml", "1 Ltr"],
-      "priceMultiplier": {
-        "100ml": 0.28,
-        "250ml": 0.55,
-        "500ml": 1,
-        "1 Ltr": 1.8
-      },
-      "video": "/videos/biofert-all-purpose-blend.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 15,
+    "name": "Chirata",
+    "emoji": "🌿",
+    "image": "chirata.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 16,
-      "name": "Fenugreek Seeds (Methi)",
-      "emoji": "🟤",
-      "image": "turmeric-root-powder.jpg",
-      "category": "seeds",
-      "description": "Premium quality fenugreek seeds with high coumarin content. Used in spice blends, hair growth treatments, and to support digestive health and lactation. Easy to sprout for microgreens.",
-      "price": 6.99,
-      "comparePrice": 8.99,
-      "rating": 4.6,
-      "reviews": 134,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.2,
-        "250g": 0.45,
-        "500g": 1,
-        "1 Kg": 1.8,
-        "5 Kg": 7.5
-      },
-      "video": "/videos/turmeric-root-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 16,
+    "name": "Chitrak",
+    "emoji": "🌿",
+    "image": "chitrak.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 17,
-      "name": "Cumin Seeds (Jeera)",
-      "emoji": "⚫",
-      "image": "ashwagandha-root-powder.jpg",
-      "category": "seeds",
-      "description": "Aromatic whole cumin seeds with intense earthy flavor. Essential for Indian, Middle Eastern, and Mexican cuisines. Known for aiding digestion and boosting immunity naturally.",
-      "price": 7.99,
-      "comparePrice": null,
-      "rating": 4.7,
-      "reviews": 178,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.22,
-        "250g": 0.48,
-        "500g": 1,
-        "1 Kg": 1.75,
-        "5 Kg": 7.0
-      },
-      "video": "/videos/ashwagandha-root-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 17,
+    "name": "Chooti Harad",
+    "emoji": "🌿",
+    "image": "chooti-harad.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 18,
-      "name": "Mustard Seeds (Black)",
-      "emoji": "🔴",
-      "image": "moringa-leaf-powder.jpg",
-      "category": "seeds",
-      "description": "Pungent black mustard seeds (Rai) for tempering and pickling. Generates heat when crushed - excellent for winter cooking. Traditional remedy for colds and joint pain when used in poultices.",
-      "price": 5.49,
-      "comparePrice": 7.49,
-      "rating": 4.5,
-      "reviews": 98,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.23,
-        "250g": 0.5,
-        "500g": 1,
-        "1 Kg": 1.7,
-        "5 Kg": 6.8
-      },
-      "video": "/videos/moringa-leaf-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 18,
+    "name": "Dhataki",
+    "emoji": "🌿",
+    "image": "dhataki.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 19,
-      "name": "Chia Seeds (Organic)",
-      "emoji": "⚪",
-      "image": "dried-lemongrass.jpg",
-      "category": "seeds",
-      "description": "Nutrient-dense organic chia seeds packed with omega-3, fiber, and protein. Creates satisfying gel when soaked - perfect for puddings, smoothies, and egg replacement in vegan baking.",
-      "price": 12.99,
-      "comparePrice": 16.99,
-      "rating": 4.9,
-      "reviews": 256,
-      "defaultWeight": "250g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.45,
-        "250g": 1,
-        "500g": 1.8,
-        "1 Kg": 3.2
-      },
-      "video": "/videos/dried-lemongrass.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 19,
+    "name": "Giloy",
+    "emoji": "🌿",
+    "image": "giloy.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 20,
-      "name": "Flax Seeds (Alsi)",
-      "emoji": "🟢",
-      "image": "organic-tulsi-holy-basil.jpg",
-      "category": "seeds",
-      "description": "Brown flaxseeds (linseeds) rich in lignans and ALA omega-3. Ground flax is a nutritious egg substitute and supports heart health. Store refrigerated for maximum freshness.",
-      "price": 5.99,
-      "comparePrice": 7.99,
-      "rating": 4.6,
-      "reviews": 145,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.24,
-        "250g": 0.52,
-        "500g": 1,
-        "1 Kg": 1.72,
-        "5 Kg": 7.0
-      },
-      "video": "/videos/organic-tulsi-holy-basil.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 20,
+    "name": "Gokharu",
+    "emoji": "🌿",
+    "image": "gokharu.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 21,
-      "name": "Neem Tulsi Herbal Soap",
-      "emoji": "🧼",
-      "image": "gau-herbal-soap.jpg",
-      "category": "soap",
-      "description": "Handcrafted cold-process soap infused with neem oil and tulsi extract. Natural antibacterial properties for clear, healthy skin. Free from parabens, sulfates, and artificial fragrances.",
-      "price": 6.99,
-      "comparePrice": 9.99,
-      "rating": 4.7,
-      "reviews": 89,
-      "defaultWeight": "100g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["75g", "100g", "125g"],
-      "priceMultiplier": {
-        "75g": 0.75,
-        "100g": 1,
-        "125g": 1.2
-      },
-      "video": "/videos/gau-herbal-soap.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 21,
+    "name": "Gudmar",
+    "emoji": "🌿",
+    "image": "gudmar.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 22,
-      "name": "Himalayan Pink Salt (Sendha Namak)",
-      "emoji": "🧂",
-      "image": "biofert-all-purpose-blend.jpg",
-      "category": "namak",
-      "description": "Pure pink Himalayan rock salt mined from ancient sea deposits. Contains 84 trace minerals including iron, calcium, and potassium. Perfect for fasting, cooking, and salt water therapy.",
-      "price": 4.99,
-      "comparePrice": 6.99,
-      "rating": 4.8,
-      "reviews": 234,
-      "defaultWeight": "500g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["250g", "500g", "1 Kg", "5 Kg"],
-      "priceMultiplier": {
-        "250g": 0.55,
-        "500g": 1,
-        "1 Kg": 1.85,
-        "5 Kg": 8.0
-      },
-      "video": "/videos/biofert-all-purpose-blend.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 22,
+    "name": "Guggle",
+    "emoji": "🌿",
+    "image": "guggle.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 23,
-      "name": "Garam Masala Blend",
-      "emoji": "🌶️",
-      "image": "turmeric-root-powder.jpg",
-      "category": "masala",
-      "description": "Authentic North Indian garam masala made with 11 whole spices ground fresh. Includes cardamom, cinnamon, cloves, cumin, black pepper, and nutmeg. Aromatic and warming for curries, lentils, and rice dishes.",
-      "price": 8.99,
-      "comparePrice": null,
-      "rating": 4.6,
-      "reviews": 167,
-      "defaultWeight": "250g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["100g", "250g", "500g", "1 Kg"],
-      "priceMultiplier": {
-        "100g": 0.45,
-        "250g": 1,
-        "500g": 1.75,
-        "1 Kg": 3.2
-      },
-      "video": "/videos/turmeric-root-powder.mp4"
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 23,
+    "name": "Harro Powder",
+    "emoji": "🌿",
+    "image": "harro-powder.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
     },
-    {
-      "id": 24,
-      "name": "Dried Reishi Mushroom (Ganoderma)",
-      "emoji": "🍄",
-      "image": "moringa-leaf-powder.jpg",
-      "category": "mushroom",
-      "description": "Premium dried reishi mushroom slices wild-cultivated on hardwood logs. Known as the 'Mushroom of Immortality' in Traditional Chinese Medicine. Supports immune function, reduces stress, and promotes longevity.",
-      "price": 24.99,
-      "comparePrice": 32.99,
-      "rating": 4.9,
-      "reviews": 78,
-      "defaultWeight": "100g",
-      "unitType": "weight",
-      "featured": true,
-      "weights": ["50g", "100g", "250g"],
-      "priceMultiplier": {
-        "50g": 0.6,
-        "100g": 1,
-        "250g": 2.2
-      },
-      "video": "/videos/moringa-leaf-powder.mp4"
-    }
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 24,
+    "name": "Indrajau",
+    "emoji": "🌿",
+    "image": "indrajau.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 25,
+    "name": "Jaivitri",
+    "emoji": "🌿",
+    "image": "jaivitri.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 26,
+    "name": "Jethimadhu",
+    "emoji": "🌿",
+    "image": "jethimadhu.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 27,
+    "name": "Kachur",
+    "emoji": "🌿",
+    "image": "kachur.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 28,
+    "name": "Kali Musli",
+    "emoji": "🌿",
+    "image": "kali-musli.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 29,
+    "name": "Kalijeera",
+    "emoji": "🌿",
+    "image": "kalijeera.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 30,
+    "name": "Kanchanar Chal",
+    "emoji": "🌿",
+    "image": "kanchanar-chal.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 31,
+    "name": "Kantakari",
+    "emoji": "🌿",
+    "image": "kantakari.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 32,
+    "name": "Kuchila",
+    "emoji": "🌿",
+    "image": "kuchila.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 33,
+    "name": "Lothsalla Himalayan Yew",
+    "emoji": "🌿",
+    "image": "Lothsalla-himalayan-yew.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 34,
+    "name": "Majistha",
+    "emoji": "🌿",
+    "image": "majistha.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 35,
+    "name": "Moringa Leaves Dried",
+    "emoji": "🌿",
+    "image": "moringa-leaves-dried.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 36,
+    "name": "Nagarmotha",
+    "emoji": "🌿",
+    "image": "nagarmotha.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 37,
+    "name": "Neem",
+    "emoji": "🌿",
+    "image": "neem.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 38,
+    "name": "Nirgundi",
+    "emoji": "🌿",
+    "image": "nirgundi.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 39,
+    "name": "Nisodh",
+    "emoji": "🌿",
+    "image": "nisodh.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 40,
+    "name": "Pakhanved",
+    "emoji": "🌿",
+    "image": "pakhanved.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 41,
+    "name": "Punanarva",
+    "emoji": "🌿",
+    "image": "punanarva.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 42,
+    "name": "Ral Safed",
+    "emoji": "🌿",
+    "image": "ral-safed.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 43,
+    "name": "Rittha",
+    "emoji": "🌿",
+    "image": "rittha.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 44,
+    "name": "Safed Musli",
+    "emoji": "🌿",
+    "image": "safed-musli.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 45,
+    "name": "Sankhapuspi",
+    "emoji": "🌿",
+    "image": "sankhapuspi.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 46,
+    "name": "Sarpaganda",
+    "emoji": "🌿",
+    "image": "sarpaganda.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 47,
+    "name": "Sennaleaves",
+    "emoji": "🌿",
+    "image": "SennaLeaves.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 48,
+    "name": "Shikakai",
+    "emoji": "🌿",
+    "image": "shikakai.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 49,
+    "name": "Sonth Dried Ginger",
+    "emoji": "🌿",
+    "image": "sonth-dried-ginger.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 50,
+    "name": "Stinging Nettle Sisno",
+    "emoji": "🌿",
+    "image": "stinging-nettle-sisno.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 51,
+    "name": "Sugandhawal",
+    "emoji": "🌿",
+    "image": "sugandhawal.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 52,
+    "name": "Talispatra",
+    "emoji": "🌿",
+    "image": "talispatra.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 53,
+    "name": "Triphala Powder",
+    "emoji": "🌿",
+    "image": "triphala-powder.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 54,
+    "name": "Tulsi",
+    "emoji": "🌿",
+    "image": "tulsi.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  },
+  {
+    "id": 55,
+    "name": "Wild Asparagus",
+    "emoji": "🌿",
+    "image": "wild-asparagus.jpg",
+    "category": "herbs",
+    "description": "No description provided.",
+    "price": 12.99,
+    "comparePrice": 16.99,
+    "rating": 4.9,
+    "reviews": 234,
+    "defaultWeight": "1 Kg",
+    "unitType": "weight",
+    "featured": true,
+    "weights": [
+      "250g",
+      "500g",
+      "1 Kg"
+    ],
+    "priceMultiplier": {
+      "250g": 0.3,
+      "500g": 0.6,
+      "1 Kg": 1
+    },
+    "video": "/videos/organic-tulsi-holy-basil.mp4"
+  }
+]
   ],
 
   "testimonials": [
