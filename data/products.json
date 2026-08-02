@@ -4098,6 +4098,42 @@
       "defaultForm": "raw",
       "showFormSelector": true,
       "video": "/videos/Himali Chauri Cow's Ghee.mp4"
+    },
+    {
+      "id": 123,
+      "name": "Kutki",
+      "emoji": "🌿",
+      "image": "kutki.jpg",
+      "category": "herbs",
+      "description": "Premium quality Kutki sourced from organic farms. Traditionally used in Ayurvedic medicine for its therapeutic properties. Carefully processed to preserve potency and freshness.",
+      "price": 17.99,
+      "comparePrice": 24.46,
+      "rating": 4.3,
+      "reviews": 312,
+      "defaultWeight": "500g",
+      "unitType": "weight",
+      "featured": false,
+      "weights": [
+        "100g",
+        "250g",
+        "500g",
+        "1 Kg",
+        "5 Kg"
+      ],
+      "priceMultiplier": {
+        "100g": 0.22,
+        "250g": 0.48,
+        "500g": 1,
+        "1 Kg": 1.85,
+        "5 Kg": 8.0
+      },
+      "forms": [
+        "Raw Form",
+        "Powder Form"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true,
+      "video": "/videos/kutki.mp4"
     }
   ],
   "testimonials": [
