@@ -78,7 +78,7 @@ const UI = {
                         <span class="px-2 py-0.5 rounded-full text-[10px] font-medium border ${meta ? meta.bgClass : ''}">${meta ? meta.emoji : ''} ${meta ? meta.label : ''}</span>
                     </div>
                     ${discount ? `<span class="absolute top-2 right-2 px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded-full">${discount}% OFF</span>` : ''}
-                    ${p.featured ? `<span class="absolute bottom-10 right-2 px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-full">★ Featured</span>` : ''}
+                    ${p.featured ? `<span class="absolute bottom-2 right-2 px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-full">★ Featured</span>` : ''}
                     <span class="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 text-white text-xs font-mono rounded-md shadow-lg">ID: ${p.id}</span>
                 </div>
                 <div class="p-4">
