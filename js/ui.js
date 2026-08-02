@@ -46,7 +46,7 @@ const UI = {
         const discount = p.comparePrice ? Math.round((1 - p.price / p.comparePrice) * 100) : 0;
         const nprPrice = AppData.formatNPR(p.price);
         const stars = AppData.renderStars(p.rating);
-        const imgUrl = `/images/products/${p.image}`;
+        const imgUrl = `/images/products/${p.category}/${p.image}`;
 
         return `
         <div class="product-card group bg-white rounded-xl border border-emerald-100 overflow-hidden cursor-pointer" onclick="UI.openProductModal(${p.id})">
@@ -155,7 +155,7 @@ const UI = {
         this.currentModalProduct = p;
         const meta = AppData.getCategory(p.category);
         const discount = p.comparePrice ? Math.round((1 - p.price / p.comparePrice) * 100) : 0;
-        const imgUrl = `/images/products/${p.image}`;
+        const imgUrl = `/images/products/${p.category}/${p.image}`;
 
         // Set video (product-specific video takes priority, falls back to category video)
         const video = document.getElementById('modalVideo');
