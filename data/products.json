@@ -292,7 +292,7 @@
       "defaultWeight": "500ml",
       "unitType": "volume",
       "featured": true,
-      "weights": ["100ml", "250ml", "500ml", "1 Ltr", "5 Ltr"],
+      "weights": ["100ml", "250ml", "500ml", "1 Ltr"],
       "priceMultiplier": {
         "100ml": 0.25,
         "250ml": 0.5,
@@ -316,7 +316,7 @@
       "defaultWeight": "1 Ltr",
       "unitType": "volume",
       "featured": true,
-      "weights": ["250ml", "500ml", "1 Ltr", "2 Ltr", "5 Ltr"],
+      "weights": ["250ml", "500ml", "1 Ltr"],
       "priceMultiplier": {
         "250ml": 0.3,
         "500ml": 0.58,
@@ -340,7 +340,7 @@
       "defaultWeight": "500ml",
       "unitType": "volume",
       "featured": false,
-      "weights": ["200ml", "500ml", "1 Ltr", "2 Ltr", "5 Ltr"],
+      "weights": ["200ml", "500ml", "1 Ltr"],
       "priceMultiplier": {
         "200ml": 0.28,
         "500ml": 1,
@@ -410,7 +410,7 @@
       "defaultWeight": "500g",
       "unitType": "weight",
       "featured": true,
-      "weights": ["100g", "250g", "500g", "1 Kg", "5 Kg"],
+      "weights": ["100g", "250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "100g": 0.2,
         "250g": 0.45,
@@ -434,7 +434,7 @@
       "defaultWeight": "500g",
       "unitType": "weight",
       "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg", "5 Kg"],
+      "weights": ["100g", "250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "100g": 0.22,
         "250g": 0.48,
@@ -458,7 +458,7 @@
       "defaultWeight": "500g",
       "unitType": "weight",
       "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg", "5 Kg"],
+      "weights": ["100g", "250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "100g": 0.23,
         "250g": 0.5,
@@ -505,7 +505,7 @@
       "defaultWeight": "500g",
       "unitType": "weight",
       "featured": false,
-      "weights": ["100g", "250g", "500g", "1 Kg", "5 Kg"],
+      "weights": ["100g", "250g", "500g", "1 Kg"],
       "priceMultiplier": {
         "100g": 0.24,
         "250g": 0.52,
