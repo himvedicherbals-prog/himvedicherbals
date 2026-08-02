@@ -58,7 +58,7 @@ const UI = {
                     </div>
                     ${discount ? `<span class="absolute top-1 left-1 px-1.5 py-0.5 bg-red-500 text-white text-[9px] font-bold rounded-full">${discount}%</span>` : ''}
                     ${p.featured ? `<span class="absolute top-1 right-1 px-1.5 py-0.5 bg-emerald-600 text-white text-[9px] font-bold rounded-full">★</span>` : ''}
-                    <span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/60 text-white text-[9px] font-mono rounded">ID: ${p.id}</span>
+                    <span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[9px] font-mono rounded">ID: ${p.id}</span>
                 </div>
                 <h3 class="text-[11px] font-semibold text-emerald-900 truncate mb-0.5">${p.name}</h3>
                 <div class="flex items-baseline gap-1">
@@ -79,7 +79,7 @@ const UI = {
                     </div>
                     ${discount ? `<span class="absolute top-2 right-2 px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded-full">${discount}% OFF</span>` : ''}
                     ${p.featured ? `<span class="absolute bottom-10 right-2 px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-full">★ Featured</span>` : ''}
-                    <span class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/70 text-white text-xs font-mono rounded-md shadow-lg">ID: ${p.id}</span>
+                    <span class="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 text-white text-xs font-mono rounded-md shadow-lg">ID: ${p.id}</span>
                 </div>
                 <div class="p-4">
                     <div class="flex items-center gap-2 mb-1">
