@@ -4062,6 +4062,42 @@
         "1 Kg": 3.2
       },
       "video": "/videos/silam1.mp4"
+    },
+    {
+      "id": 122,
+      "name": "Himali Chauri Cow's Ghee",
+      "emoji": "✨",
+      "image": "Himali Chauri Cow's Ghee.jpg",
+      "category": "resin",
+      "description": "Pure natural Himali Chauri Cow's Ghee harvested from authentic sources. Ideal for rituals, aromatherapy, and traditional preparations. Ethically sourced and laboratory tested for purity.",
+      "price": 31.99,
+      "comparePrice": 39.66,
+      "rating": 4.7,
+      "reviews": 67,
+      "defaultWeight": "100g",
+      "unitType": "weight",
+      "featured": true,
+      "weights": [
+        "25g",
+        "50g",
+        "100g",
+        "250g",
+        "500g"
+      ],
+      "priceMultiplier": {
+        "25g": 0.3,
+        "50g": 0.55,
+        "100g": 1,
+        "250g": 2.2,
+        "500g": 4.0
+      },
+      "forms": [
+        "Raw Resin",
+        "Powdered"
+      ],
+      "defaultForm": "raw",
+      "showFormSelector": true,
+      "video": "/videos/Himali Chauri Cow's Ghee.mp4"
     }
   ],
   "testimonials": [
