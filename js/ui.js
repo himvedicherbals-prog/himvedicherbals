@@ -1,5 +1,7 @@
 /**
  * ui.js - UI Rendering: Products, Modals, Search, Toasts
+ * UNIFIED: Single product card component for both Mobile & Desktop
+ * Uses Tailwind responsive utilities for layout adaptation
  */
 
 const UI = {
@@ -41,6 +43,13 @@ const UI = {
         lucide.createIcons();
     },
 
+    /**
+     * UNIFIED Product Card - Same content for Mobile & Desktop
+     * Uses Tailwind responsive prefixes for size/spacing adjustments:
+     * - sm: (640px+) - small tablets
+     * - md: (768px+) - tablets  
+     * - lg: (1024px+) - desktop
+     */
     renderProductCard(p) {
         const meta = AppData.getCategory(p.category);
         const discount = p.comparePrice ? Math.round((1 - p.price / p.comparePrice) * 100) : 0;
@@ -48,61 +57,77 @@ const UI = {
         const stars = AppData.renderStars(p.rating);
         const imgUrl = `/images/products/${p.category}/${p.image}`;
 
+        // Form selector logic (same as desktop had before)
+        const forms = p.forms || [];
+        const showSelector = p.showFormSelector !== false && forms.length > 1;
+        const showBadge = !showSelector && forms.length === 1;
+
+        let formSelectorHTML = '';
+        if (showBadge) {
+            // Single form - show as badge
+            formSelectorHTML = `<span class="px-1.5 sm:px-2 py-1 sm:py-1.5 border border-emerald-200 rounded-lg text-[10px] sm:text-xs bg-emerald-50 text-emerald-700">${forms[0]}</span>`;
+        } else if (showSelector) {
+            // Multiple forms - show dropdown (UNIFIED ID: form-{id})
+            formSelectorHTML = `<select id="form-${p.id}" class="px-1.5 sm:px-2 py-1 sm:py-1.5 border border-emerald-200 rounded-lg text-[10px] sm:text-xs bg-white outline-none focus:border-emerald-500">${forms.map((f, i) => `<option value="${p.defaultForm || 'raw'}" ${i === 0 ? 'selected' : ''}>${f}</option>`).join('')}</select>`;
+        }
+
         return `
-        <div class="product-card group bg-white rounded-xl border border-emerald-100 overflow-hidden cursor-pointer" onclick="UI.openProductModal(${p.id})">
-            <!-- Mobile Card -->
-            <div class="mobile-card p-2">
-                <div class="relative mb-1.5">
-                    <div class="h-14 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg overflow-hidden">
-                        <img src="${imgUrl}" alt="${p.name}" class="w-full h-full object-contain" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-2xl\\'>${p.emoji}</div>'">
-                    </div>
-                    ${discount ? `<span class="absolute top-1 left-1 px-1.5 py-0.5 bg-red-500 text-white text-[9px] font-bold rounded-full">${discount}%</span>` : ''}
-                    ${p.featured ? `<span class="absolute top-1 right-1 px-1.5 py-0.5 bg-emerald-600 text-white text-[9px] font-bold rounded-full">★</span>` : ''}
-                    <span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/60 text-white text-[9px] font-mono rounded">ID: ${p.id}</span>
+        <div class="product-card group bg-white rounded-xl sm:rounded-2xl border border-emerald-100 overflow-hidden cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200" onclick="UI.openProductModal(${p.id})">
+            <!-- Image Section -->
+            <div class="relative h-32 sm:h-40 md:h-48 bg-gradient-to-br from-emerald-50 to-emerald-100 overflow-hidden">
+                <img src="${imgUrl}" alt="${p.name}" class="product-image w-full h-full object-contain p-2 sm:p-4" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-3xl sm:text-5xl\\'>${p.emoji}</div>'">
+                
+                <!-- Badges -->
+                <div class="absolute top-1.5 sm:top-2 left-1.5 sm:left-2">
+                    <span class="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[10px] font-medium border ${meta ? meta.bgClass : ''}">${meta ? meta.emoji : ''} ${meta ? meta.label : ''}</span>
                 </div>
-                <h3 class="text-[11px] font-semibold text-emerald-900 truncate mb-0.5">${p.name}</h3>
-                <div class="flex items-baseline gap-1">
-                    <span id="mprice-${p.id}" class="text-[11px] font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
-                </div>
-                <div id="mnpr-${p.id}" class="text-[9px] text-emerald-700 font-medium">${nprPrice}</div>
-                <div class="flex items-center gap-1 mt-1" onclick="event.stopPropagation()">
-                    <select id="weight-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-1 py-0.5 border border-emerald-200 rounded text-[9px] bg-white outline-none">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
-                    <button onclick="UI.quickAdd(${p.id}, event)" class="px-1.5 py-0.5 bg-emerald-600 text-white text-[9px] font-bold rounded hover:bg-emerald-700">Add</button>
-                </div>
+                ${discount ? `<span class="absolute top-1.5 sm:top-2 right-1.5 sm:right-2 px-1.5 sm:px-2 py-0.5 bg-red-500 text-white text-[8px] sm:text-xs font-bold rounded-full">${discount}% OFF</span>` : ''}
+                ${p.featured ? `<span class="absolute bottom-1.5 sm:bottom-2 right-1.5 sm:right-2 px-1.5 sm:px-2 py-0.5 bg-emerald-600 text-white text-[8px] sm:text-xs font-bold rounded-full">★ Featured</span>` : ''}
+                <span class="absolute bottom-1.5 sm:bottom-2 left-1.5 sm:left-2 px-1.5 sm:px-2 py-0.5 bg-black/70 text-white text-[8px] sm:text-xs font-mono rounded-md shadow-lg">ID: ${p.id}</span>
             </div>
-            <!-- Desktop Card -->
-            <div class="desktop-card">
-                <div class="relative h-48 bg-gradient-to-br from-emerald-50 to-emerald-100 overflow-hidden">
-                    <img src="${imgUrl}" alt="${p.name}" class="product-image w-full h-full object-contain" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-5xl\\'>${p.emoji}</div>'">
-                    <div class="absolute top-2 left-2">
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-medium border ${meta ? meta.bgClass : ''}">${meta ? meta.emoji : ''} ${meta ? meta.label : ''}</span>
-                    </div>
-                    ${discount ? `<span class="absolute top-2 right-2 px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded-full">${discount}% OFF</span>` : ''}
-                    ${p.featured ? `<span class="absolute bottom-2 right-2 px-2 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-full">★ Featured</span>` : ''}
-                    <span class="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 text-white text-xs font-mono rounded-md shadow-lg">ID: ${p.id}</span>
+
+            <!-- Content Section -->
+            <div class="p-2.5 sm:p-4">
+                <!-- Weight Badge -->
+                <div class="flex items-center gap-1 mb-0.5 sm:mb-1">
+                    <span class="text-[9px] sm:text-[10px] text-emerald-600/70 font-medium">${p.defaultWeight}</span>
                 </div>
-                <div class="p-4">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="text-[10px] text-emerald-600/70">${p.defaultWeight}</span>
-                    </div>
-                    <h3 class="font-semibold text-emerald-900 text-base line-clamp-1 mb-1">${p.name}</h3>
-                    <p class="text-sm text-emerald-900/60 line-clamp-2 leading-relaxed mb-2">${p.description}</p>
-                    <div class="flex items-center gap-1 mb-2">
-                        ${stars}
-                        <span class="text-xs text-emerald-600/70">(${p.reviews})</span>
-                    </div>
-                    <div class="flex items-baseline gap-2 mb-1">
-                        <span id="price-${p.id}" class="text-lg font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
-                        <span id="compare-${p.id}" class="text-sm text-emerald-600/50 line-through ${p.comparePrice ? '' : 'hidden'}">${p.comparePrice ? '$' + p.comparePrice.toFixed(2) : ''}</span>
-                    </div>
-                    <div id="npr-${p.id}" class="text-sm text-emerald-700 font-medium mb-3">${nprPrice}</div>
-                    <div class="flex items-center gap-2" onclick="event.stopPropagation()">
-                        <select id="dw-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}</select>
-                        ${(() => { const forms = p.forms || []; const showSelector = p.showFormSelector !== false; if (!showSelector && forms.length === 1) { return `<span class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-emerald-50 text-emerald-700">${forms[0]}</span>`; } else if (showSelector && forms.length > 1) { return `<select id="form-${p.id}" class="px-2 py-1.5 border border-emerald-200 rounded-lg text-xs bg-white outline-none focus:border-emerald-500">${forms.map((f, i) => `<option value="${p.defaultForm || 'raw'}" ${i === 0 ? 'selected' : ''}>${f}</option>`).join('')}</select>`; } return ''; })()}
-                        <button onclick="UI.quickAdd(${p.id}, event)" class="px-3 py-1.5 bg-emerald-600 text-white text-xs font-semibold rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-1">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
-                        </button>
-                    </div>
+
+                <!-- Product Name -->
+                <h3 class="font-semibold text-emerald-900 text-xs sm:text-base line-clamp-1 mb-0.5 sm:mb-1">${p.name}</h3>
+
+                <!-- Description (visible on all screens now) -->
+                <p class="text-[10px] sm:text-sm text-emerald-900/60 line-clamp-2 leading-relaxed mb-1 sm:mb-2 hidden sm:block">${p.description}</p>
+                <p class="text-[9px] sm:hidden text-emerald-900/60 line-clamp-1 leading-relaxed mb-1">${p.description}</p>
+
+                <!-- Rating & Reviews -->
+                <div class="flex items-center gap-1 mb-1 sm:mb-2">
+                    <div class="flex items-center gap-0.5">${stars}</div>
+                    <span class="text-[9px] sm:text-xs text-emerald-600/70">(${p.reviews})</span>
+                </div>
+
+                <!-- Price Section -->
+                <div class="flex items-baseline gap-1 sm:gap-2 mb-0.5 sm:mb-1">
+                    <span id="price-${p.id}" class="text-sm sm:text-lg font-bold text-emerald-900">$${p.price.toFixed(2)}</span>
+                    <span id="compare-${p.id}" class="text-[10px] sm:text-sm text-emerald-600/50 line-through ${p.comparePrice ? '' : 'hidden'}">${p.comparePrice ? '$' + p.comparePrice.toFixed(2) : ''}</span>
+                </div>
+                <div id="npr-${p.id}" class="text-[9px] sm:text-sm text-emerald-700 font-medium mb-1.5 sm:mb-3">${nprPrice}</div>
+
+                <!-- Action Row: Weight + Form + Add Button -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-2" onclick="event.stopPropagation()">
+                    <!-- Weight Selector (UNIFIED ID: weight-{id}) -->
+                    <select id="weight-${p.id}" onchange="UI.updateCardPrice(${p.id})" class="flex-1 px-1.5 sm:px-2 py-1 sm:py-1.5 border border-emerald-200 rounded-lg text-[10px] sm:text-xs bg-white outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20">
+                        ${p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('')}
+                    </select>
+
+                    <!-- Form Selector (conditional) -->
+                    ${formSelectorHTML}
+
+                    <!-- Add to Cart Button -->
+                    <button onclick="UI.quickAdd(${p.id}, event)" class="w-full sm:w-auto px-2 sm:px-3 py-1 sm:py-1.5 bg-emerald-600 text-white text-[10px] sm:text-xs font-semibold rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-1 active:scale-95">
+                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                        <span>Add</span>
+                    </button>
                 </div>
             </div>
         </div>`;
@@ -112,22 +137,23 @@ const UI = {
         (evt || window.event)?.stopPropagation();
         const p = AppData.getProductById(productId);
         if (!p) return;
-        const isMobile = window.innerWidth < 640;
-        const selectEl = document.getElementById(isMobile ? `weight-${productId}` : `dw-${productId}`);
+
+        // UNIFIED: Always use weight-{id} (no more mobile/desktop split)
+        const selectEl = document.getElementById(`weight-${productId}`);
         const weight = selectEl ? selectEl.value : p.defaultWeight;
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
-        
-        // Get form from product data or selector
+
+        // Get form from unified selector (form-{id})
         const forms = p.forms || [];
         let form = '';
         if (forms.length === 1) {
-            form = forms[0]; // Single form (e.g., "1 Piece", "Liquid")
+            form = forms[0];
         } else if (forms.length > 1 && p.showFormSelector !== false) {
             const formEl = document.getElementById(`form-${productId}`);
             form = formEl ? formEl.options[formEl.selectedIndex].text : forms[0];
         }
-        
+
         const msg = Cart.add(p, weight, form, price);
         Toast.show(msg);
     },
@@ -196,27 +222,27 @@ const UI = {
         ws.innerHTML = p.weights.map(w => `<option value="${w}" ${w === p.defaultWeight ? 'selected' : ''}>${w}</option>`).join('');
 
         document.getElementById('modalDescription').textContent = p.description;
-        
+
         // Form select - use forms from product JSON data
         const modalFormEl = document.getElementById('modalForm');
         const modalFormField = document.getElementById('modalFormField');
         const modalWeightField = document.getElementById('modalWeightField');
         const modalSoapBadgeEl = document.getElementById('modalSoapBadge');
-        
+
         const forms = p.forms || [];
         const showSelector = p.showFormSelector !== false && forms.length > 1;
         const showBadge = !showSelector && forms.length === 1;
-        
+
         // Update form dropdown options from product data
         if (forms.length > 1) {
-            modalFormEl.innerHTML = forms.map((f, i) => 
+            modalFormEl.innerHTML = forms.map((f, i) =>
                 `<option value="${p.defaultForm || 'raw'}" ${i === 0 ? 'selected' : ''}>${f}</option>`
             ).join('');
             modalFormField.classList.remove('hidden');
         } else {
             modalFormField.classList.add('hidden');
         }
-        
+
         // Show/hide badge for single-form products (soap, oils)
         if (modalSoapBadgeEl) {
             if (showBadge) {
@@ -229,7 +255,7 @@ const UI = {
                 modalSoapBadgeEl.classList.add('hidden');
             }
         }
-        
+
         modalWeightField.classList.toggle('col-span-2', !showSelector);
 
         // Category badge
@@ -285,57 +311,52 @@ const UI = {
             `Based on exchange rate: 1 USD = ${SiteConfig.exchangeRate} NPR`;
     },
 
-    // Update price on product card when weight changes
+    /**
+     * UNIFIED Price Update - Single set of IDs (no more mprice/mnpr split)
+     * Updates price-{id}, compare-{id}, npr-{id} only
+     */
     updateCardPrice(productId) {
         const p = AppData.getProductById(productId);
         if (!p) return;
-        
-        const isMobile = window.innerWidth < 640;
-        const selectEl = document.getElementById(isMobile ? `weight-${productId}` : `dw-${productId}`);
+
+        // UNIFIED: Always use weight-{id}
+        const selectEl = document.getElementById(`weight-${productId}`);
         const weight = selectEl ? selectEl.value : p.defaultWeight;
         const multiplier = p.priceMultiplier[weight] || 1;
         const newPrice = +(p.price * multiplier).toFixed(2);
-        
-        // Update desktop card price
+
+        // Update price element
         const priceEl = document.getElementById(`price-${productId}`);
         if (priceEl) priceEl.textContent = '$' + newPrice.toFixed(2);
-        
-        // Update compare price (desktop)
+
+        // Update compare price
         const compareEl = document.getElementById(`compare-${productId}`);
         if (compareEl && p.comparePrice) {
             const cmpPrice = +(p.comparePrice * multiplier).toFixed(2);
             compareEl.textContent = '$' + cmpPrice.toFixed(2);
             compareEl.classList.remove('hidden');
         }
-        
-        // Update NPR price (desktop)
+
+        // Update NPR price
         const nprEl = document.getElementById(`npr-${productId}`);
         if (nprEl) nprEl.textContent = AppData.formatNPR(newPrice);
-        
-        // Update mobile card price
-        const mpriceEl = document.getElementById(`mprice-${productId}`);
-        if (mpriceEl) mpriceEl.textContent = '$' + newPrice.toFixed(2);
-        
-        // Update NPR price (mobile)
-        const mnprEl = document.getElementById(`mnpr-${productId}`);
-        if (mnprEl) mnprEl.textContent = AppData.formatNPR(newPrice);
     },
 
     addFromModal() {
         if (!this.currentModalProduct) return;
         const p = this.currentModalProduct;
         const weight = document.getElementById('modalWeight').value;
-        
+
         // Get form from product data
         const forms = p.forms || [];
         let form = '';
         if (forms.length === 1) {
-            form = forms[0]; // Single form like "1 Piece", "Liquid"
+            form = forms[0];
         } else if (forms.length > 1) {
             const formEl = document.getElementById('modalForm');
             form = formEl ? formEl.options[formEl.selectedIndex].text : forms[0];
         }
-        
+
         const multiplier = p.priceMultiplier[weight] || 1;
         const price = +(p.price * multiplier).toFixed(2);
         const msg = Cart.add(p, weight, form, price);

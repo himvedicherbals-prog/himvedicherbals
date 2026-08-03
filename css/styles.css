@@ -1,5 +1,6 @@
 /* ==============================================
    GreenEarth Organics - Custom Styles
+   UNIFIED: Single card component for Mobile & Desktop
    ============================================== */
 
 /* === Base === */
@@ -70,7 +71,7 @@ body {
     animation: slideInRight 0.3s ease-out;
 }
 .cart-drawer-close {
-    animation: slideOutRight 0.3s ease-in forwards;
+    animation: slideOutRight 0.3s ease forwards;
 }
 .modal-overlay {
     animation: fadeIn 0.2s ease-out;
@@ -118,7 +119,11 @@ body {
     background-color: #ECFDF5;
 }
 
-/* === Product Card === */
+/* ==============================================
+   UNIFIED Product Card Styles
+   Same component adapts via Tailwind responsive classes
+   ============================================== */
+
 .product-card {
     transition: all 0.3s ease;
 }
@@ -132,6 +137,48 @@ body {
 }
 .product-card:hover .product-image {
     transform: scale(1.05);
+}
+
+/* Ensure form selectors are properly styled on all devices */
+.product-card select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 28px !important;
+}
+
+.product-card select:focus {
+    outline: none;
+    ring: 1px solid #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/* Touch-friendly sizing for mobile */
+@media (max-width: 639px) {
+    .product-card select {
+        font-size: 14px !important; /* Prevent iOS zoom on focus */
+        min-height: 36px; /* Minimum touch target */
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    /* Ensure button touch targets are large enough */
+    .product-card button {
+        min-height: 36px;
+    }
+
+    /* Slightly tighter spacing on mobile */
+    .product-card {
+        font-size: 0.875rem;
+    }
+}
+
+/* Tablet refinements */
+@media (min-width: 640px) and (max-width: 767px) {
+    .product-card select {
+        font-size: 13px;
+    }
 }
 
 /* === Category Card === */
@@ -172,12 +219,18 @@ body {
     -webkit-line-clamp: 2;
 }
 
-/* === Responsive helpers === */
-@media (max-width: 639px) {
-    .mobile-card { display: block; }
-    .desktop-card { display: none; }
-}
-@media (min-width: 640px) {
-    .mobile-card { display: none; }
-    .desktop-card { display: block; }
-}
+/*
+ * REMOVED: Old mobile-card/desktop-card visibility rules
+ * The unified product card now uses Tailwind responsive utilities
+ * instead of separate mobile/desktop components.
+ *
+ * Previous code that was removed:
+ *   @media (max-width: 639px) {
+ *       .mobile-card { display: block; }
+ *       .desktop-card { display: none; }
+ *   }
+ *   @media (min-width: 640px) {
+ *       .mobile-card { display: none; }
+ *       .desktop-card { display: block; }
+ *   }
+ */
