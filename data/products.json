@@ -4141,7 +4141,7 @@
       "emoji": "✨",
       "image": "musabbar-elwa.jpg",
       "category": "resin",
-      "description": "Pure natural Musabbar Elwa harvested from authentic sources. Ideal for rituals, aromatherapy, and traditional preparations. Ethically sourced and laboratory tested for purity.",
+      "description": "Elwa Resin (also called Kala Gond, Aloe Gum, or Sibre Zard in Unani medicine) is the dried, solidified latex form of pure Aloe Vera juice, traditionally prepared by boiling down the plant's sap and allowing it to naturally dry into potent, dark resin chunks. This 100% natural resin has been used for centuries in traditional herbal medicine and holistic wellness practices across South Asia and the Middle East.",
       "price": 21.49,
       "comparePrice": 26.43,
       "rating": 4.8,
@@ -4164,8 +4164,7 @@
         "500g": 4.0
       },
       "forms": [
-        "Raw Resin",
-        "Powdered"
+        "Raw Resin"
       ],
       "defaultForm": "raw",
       "showFormSelector": true,
