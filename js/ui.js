@@ -2,14 +2,19 @@
  * ui.js - UI Rendering: Products, Modals, Search, Toasts
  * UNIFIED: Single product card component for both Mobile & Desktop
  * Uses Tailwind responsive utilities for layout adaptation
+ * PAGINATION: Shows 30 products per page with navigation controls
  */
 
 const UI = {
     currentCategory: 'all',
     searchQuery: '',
     currentModalProduct: null,
+    
+    // === PAGINATION SETTINGS ===
+    currentPage: 1,
+    productsPerPage: 30,
 
-    // === Product Grid ===
+    // === Product Grid with Pagination ===
     renderProducts() {
         const grid = document.getElementById('productGrid');
         const noProducts = document.getElementById('noProducts');
@@ -35,12 +40,201 @@ const UI = {
         if (filtered.length === 0) {
             grid.innerHTML = '';
             noProducts.classList.remove('hidden');
+            this.hidePagination();
             return;
         }
+        
         noProducts.classList.add('hidden');
 
-        grid.innerHTML = filtered.map(p => this.renderProductCard(p)).join('');
+        // === PAGINATION LOGIC ===
+        // Calculate total pages
+        const totalPages = Math.ceil(filtered.length / this.productsPerPage);
+        
+        // Ensure current page is valid (important when filtering changes)
+        if (this.currentPage > totalPages) {
+            this.currentPage = totalPages;
+        }
+        if (this.currentPage < 1) {
+            this.currentPage = 1;
+        }
+        
+        // Get products for current page
+        const startIndex = (this.currentPage - 1) * this.productsPerPage;
+        const endIndex = Math.min(startIndex + this.productsPerPage, filtered.length);
+        const paginatedProducts = filtered.slice(startIndex, endIndex);
+
+        // Render only current page products
+        grid.innerHTML = paginatedProducts.map(p => this.renderProductCard(p)).join('');
         lucide.createIcons();
+        
+        // Render pagination controls
+        this.renderPagination(filtered.length, totalPages, startIndex, endIndex);
+    },
+
+    /**
+     * Render Pagination Controls
+     */
+    renderPagination(totalItems, totalPages, startIndex, endIndex) {
+        let paginationContainer = document.getElementById('paginationContainer');
+        
+        // Create pagination container if it doesn't exist
+        if (!paginationContainer) {
+            paginationContainer = document.createElement('div');
+            paginationContainer.id = 'paginationContainer';
+            
+            // Insert after product grid
+            const grid = document.getElementById('productGrid');
+            if (grid && grid.parentNode) {
+                grid.parentNode.insertBefore(paginationContainer, grid.nextSibling);
+            }
+        }
+        
+        // Hide pagination if only one page
+        if (totalPages <= 1) {
+            paginationContainer.innerHTML = '';
+            paginationContainer.classList.add('hidden');
+            return;
+        }
+        
+        paginationContainer.classList.remove('hidden');
+        
+        // Build pagination HTML
+        let paginationHTML = `
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 px-2">
+                <!-- Page Info -->
+                <div class="text-sm text-emerald-600/70 order-2 sm:order-1">
+                    Showing <span class="font-semibold text-emerald-800">${startIndex + 1}</span> to 
+                    <span class="font-semibold text-emerald-800">${endIndex}</span> of 
+                    <span class="font-semibold text-emerald-800">${totalItems}</span> products
+                </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="flex items-center gap-2 order-1 sm:order-2">
+                    <!-- Previous Button -->
+                    <button onclick="UI.goToPage(${this.currentPage - 1})" 
+                            class="px-4 py-2 rounded-lg text-sm font-medium transition-all
+                                   ${this.currentPage === 1 
+                                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                                       : 'bg-white border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 active:scale-95'}"
+                            ${this.currentPage === 1 ? 'disabled' : ''}>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Previous
+                        </span>
+                    </button>
+                    
+                    <!-- Page Numbers -->
+                    <div class="flex items-center gap-1">
+                        ${this.generatePageNumbers(totalPages)}
+                    </div>
+                    
+                    <!-- Next Button -->
+                    <button onclick="UI.goToPage(${this.currentPage + 1})" 
+                            class="px-4 py-2 rounded-lg text-sm font-medium transition-all
+                                   ${this.currentPage === totalPages 
+                                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                                       : 'bg-white border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 active:scale-95'}"
+                            ${this.currentPage === totalPages ? 'disabled' : ''}>
+                        <span class="flex items-center gap-1">
+                            Next
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        paginationContainer.innerHTML = paginationHTML;
+    },
+    
+    /**
+     * Generate page number buttons
+     */
+    generatePageNumbers(totalPages) {
+        let pages = [];
+        const maxVisible = 5; // Maximum page numbers to show
+        
+        let startPage = Math.max(1, this.currentPage - Math.floor(maxVisible / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+        
+        // Adjust if we're near the end
+        if (endPage - startPage < maxVisible - 1) {
+            startPage = Math.max(1, endPage - maxVisible + 1);
+        }
+        
+        // First page & ellipsis
+        if (startPage > 1) {
+            pages.push(this.createPageButton(1));
+            if (startPage > 2) {
+                pages.push('<span class="px-2 text-emerald-400">...</span>');
+            }
+        }
+        
+        // Visible page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(this.createPageButton(i));
+        }
+        
+        // Last page & ellipsis
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                pages.push('<span class="px-2 text-emerald-400">...</span>');
+            }
+            pages.push(this.createPageButton(totalPages));
+        }
+        
+        return pages.join('');
+    },
+    
+    /**
+     * Create a single page button
+     */
+    createPageButton(pageNum) {
+        const isActive = pageNum === this.currentPage;
+        return `
+            <button onclick="UI.goToPage(${pageNum})"
+                    class="w-9 h-9 rounded-lg text-sm font-medium transition-all
+                           ${isActive 
+                               ? 'bg-emerald-600 text-white shadow-md scale-105' 
+                               : 'bg-white border border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 active:scale-95'}">
+                ${pageNum}
+            </button>
+        `;
+    },
+
+    /**
+     * Go to specific page
+     */
+    goToPage(pageNum) {
+        this.currentPage = pageNum;
+        this.renderProducts();
+        
+        // Scroll to top of products section smoothly
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+            productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    },
+
+    /**
+     * Hide pagination container
+     */
+    hidePagination() {
+        const paginationContainer = document.getElementById('paginationContainer');
+        if (paginationContainer) {
+            paginationContainer.classList.add('hidden');
+        }
+    },
+
+    /**
+     * Reset to page 1 (call when category/filter changes)
+     */
+    resetPagination() {
+        this.currentPage = 1;
     },
 
     /**
@@ -158,13 +352,16 @@ const UI = {
         Toast.show(msg);
     },
 
-    // === Category Filtering ===
+    // === Category Filtering (with pagination reset) ===
     filterByCategory(cat) {
         this.currentCategory = cat;
+        this.resetPagination(); // Reset to page 1 when category changes
+        
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.category === cat);
         });
         this.renderProducts();
+        
         // Auto-scroll to products section
         const productsSection = document.getElementById('products');
         if (productsSection) {
@@ -176,6 +373,7 @@ const UI = {
         const desktopVal = document.getElementById('searchInput')?.value || '';
         const mobileVal = document.getElementById('mobileSearchInput')?.value || '';
         this.searchQuery = desktopVal || mobileVal;
+        this.resetPagination(); // Reset to page 1 when search changes
         this.renderProducts();
     },
 
