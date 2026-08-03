@@ -151,22 +151,35 @@ function renderCategoryShowcase() {
 }
 
 /**
- * Renders hero trust badges from category data.
+ * Renders hero trust badges - dynamically counts products from AppData.
+ * Auto-updates when products are added/removed from products.json.
  */
 function renderHeroTrustBadges() {
     const container = document.getElementById('heroTrustBadges');
     if (!container) return;
 
-    const badges = [
-        { emoji: '🌱', label: 'Herbs', sub: '5+ varieties' },
-        { emoji: '🌲', label: 'Resin', sub: '5+ types' },
-        { emoji: '🫒', label: 'Oils', sub: '5+ oils' },
-        { emoji: '🫘', label: 'Seeds', sub: '5+ kinds' },
-        { emoji: '🧼', label: 'Soap', sub: 'Natural' },
-        { emoji: '🧂', label: 'Namak', sub: 'Himalayan' },
-        { emoji: '🌶️', label: 'Masala', sub: 'Fresh Blend' },
-        { emoji: '🍄', label: 'Mushroom', sub: 'Medicinal' }
-    ];
+    // Suffix labels for each category (descriptive text after count)
+    const suffixMap = {
+        'herbs': 'varieties',
+        'resin': 'types',
+        'oils': 'oils',
+        'seeds': 'kinds',
+        'soap': 'types',
+        'namak': 'items',
+        'masala': 'blends',
+        'mushroom': 'type'
+    };
+
+    // Build badges dynamically from actual product counts
+    const badges = AppData.categories.map(cat => {
+        const count = AppData.getProductsByCategory(cat.slug).length;
+        const suffix = suffixMap[cat.slug] || 'items';
+        return {
+            emoji: cat.emoji || '📦',
+            label: cat.label,
+            sub: `${count} ${suffix}`
+        };
+    });
 
     container.innerHTML = badges.map(b => `
         <div class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10">
