@@ -29,6 +29,9 @@ const UI = {
             filtered = AppData.searchProducts(this.searchQuery);
         }
 
+        // === ALWAYS SORT A-Z BY PRODUCT NAME ===
+        filtered = filtered.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+
         // Update section title
         const titles = { 'all': 'All Products' };
         for (const cat of AppData.categories) {
