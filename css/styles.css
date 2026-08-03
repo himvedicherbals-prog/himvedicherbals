@@ -236,61 +236,69 @@ body {
  */
 
 /* ==============================================
-   MOBILE CATEGORY SHOWCASE - 3 Columns Layout
-   Compact cards for small screens
+   MOBILE CATEGORY SHOWCASE - 2 Columns Layout ✨ UPDATED
+   Wider cards with visible descriptions for mobile
    ============================================== */
 @media (max-width: 639px) {
-    /* Category showcase container - 3 columns on mobile */
+    /* Category showcase container - 2 COLUMNS on mobile (CHANGED from 3) */
     #categoryShowcase {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
     }
 
-    /* Compact category cards for 3-column layout */
+    /* Category cards for 2-column layout - more spacious */
     #categoryShowcase .category-card {
-        padding: 0.75rem !important;
-        border-radius: 0.75rem !important;
+        padding: 1.25rem !important;
+        border-radius: 1rem !important;
     }
 
-    /* Smaller icon container */
+    /* Icon container - larger for better visibility */
     #categoryShowcase .category-card > div:first-child {
-        width: 2rem !important;
-        height: 2rem !important;
-        border-radius: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
-        padding: 0.25rem !important;
+        width: 2.75rem !important;
+        height: 2.75rem !important;
+        border-radius: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0.4rem !important;
     }
 
-    /* Smaller icon */
+    /* Icon size - larger */
     #categoryShowcase .category-card > div:first-child i,
     #categoryShowcase .category-card > div:first-child svg {
-        width: 1rem !important;
-        height: 1rem !important;
+        width: 1.35rem !important;
+        height: 1.35rem !important;
     }
 
-    /* Smaller title */
+    /* Title - larger and more readable */
     #categoryShowcase .category-card h3 {
-        font-size: 0.8rem !important;
-        margin-bottom: 0.15rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.4rem !important;
     }
 
-    /* Hide description on mobile to save space */
+    /* ✅ DESCRIPTION NOW VISIBLE on mobile (was hidden before) */
     #categoryShowcase .category-card p:not(:last-child) {
-        display: none !important;
+        display: block !important;
+        font-size: 0.8rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 0.6rem !important;
+        /* Limit to 2 lines for clean layout */
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 2 !important;
+        overflow: hidden !important;
     }
 
-    /* Smaller product count / link text */
+    /* Product count / link text - larger */
     #categoryShowcase .category-card span:last-child,
     #categoryShowcase .category-card .category-arrow {
-        font-size: 0.65rem !important;
-        gap: 0.2rem !important;
+        font-size: 0.8rem !important;
+        gap: 0.35rem !important;
     }
 
-    /* Smaller arrow icon in category link */
+    /* Arrow icon in category link - larger */
     #categoryShowcase .category-card .category-arrow i,
     #categoryShowcase .category-card .category-arrow svg {
-        width: 0.7rem !important;
-        height: 0.7rem !important;
+        width: 0.9rem !important;
+        height: 0.9rem !important;
     }
 }
 
